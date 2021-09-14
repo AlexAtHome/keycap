@@ -1,133 +1,75 @@
 import React from 'react'
+import { Key } from '../key/key'
 import './keyboard.css'
-
-const fRow = Array(12).fill('').map((_, index) => `F${index + 1}`)
-
-const numbersRow = [
-  '` ~',
-  '1 !',
-  '2 @',
-  '3 #',
-  '4 $',
-  '5 %',
-  '6 ^',
-  '7 &',
-  '8 *',
-  '9 (',
-  '0 )',
-  '- _',
-  '=+',
-];
-
-const topRow = [
-  'q',
-  'w',
-  'e',
-  'r',
-  't',
-  'y',
-  'u',
-  'i',
-  'o',
-  'p',
-  '[',
-  ']',
-]
-
-const middleRow = [
-  'a',
-  's',
-  'd',
-  'f',
-  'g',
-  'h',
-  'j',
-  'k',
-  'l',
-  ';',
-  '\'',
-]
-
-const bottomRow = [
-  'z',
-  'x',
-  'c',
-  'v',
-  'b',
-  'n',
-  'm',
-  ',',
-  '.',
-  '/',
-]
+import { bottomRow, fRow, middleRow, numbersRow, topRow } from './keys'
 
 export const Keyboard: React.FC = () => <div className="Keyboard">
   <div className="wrap">
     <section className="keyset" id="functional">
       <div className="row">
-        <div className="key key_esc">Esc</div>
-        {fRow.map((label, key) => <div key={key} className="key key_f">{label}</div>)}
+        <Key id="esc" mod="esc" label="Esc" />
+        {fRow.map((label, key) => <Key id={label.toLowerCase()} mod="f" key={key} label={label} />)}
       </div>
     </section>
 
     <section className="keyset" id="letters">
       <div className="row">
-        {numbersRow.map((label, key) => <div key={key} className="key">{label}</div>)}
-        <div className="key key_backspace key_label_small">&larr; Back</div>
+        {numbersRow.map((label, key) => <Key id={label.toLowerCase()} key={key} label={label} />)}
+        <Key id="backspace" mod="backspace" label="&larr; Back" />
       </div>
       <div className="row">
-        <div className="key key_tab key_label_small">Tab&#8646;</div>
-        {topRow.map((label, key) => <div key={key} className="key">{label}</div>)}
-        <div className="key key_slash key_label_small">\</div>
+        <Key id="tab" mod="tab" label="Tab&#8646;" />
+        {topRow.map((label, key) => <Key id={label.toLowerCase()} key={key} label={label} />)}
+        <Key id="backslash" mod="slash" label="\" />
       </div>
       <div className="row">
-        <div className="key key_caps key_label_small">Caps Lock</div>
-        {middleRow.map((label, key) => <div key={key} className="key">{label}</div>)}
-        <div className="key key_enter key_label_small">Enter &#8626;</div>
+        <Key id="caps_lock" mod="caps" label="Caps Lock" />
+        {middleRow.map((label, key) => <Key id={label.toLowerCase()} key={key} label={label} />)}
+        <Key id="enter" mod="enter" label="Enter &#8626;" />
       </div>
       <div className="row">
-        <div className="key key_shift_left key_label_small">&#8657; Shift</div>
-        {bottomRow.map((label, key) => <div key={key} className="key">{label}</div>)}
-        <div className="key key_shift_right key_label_small">&#8657; Shift</div>
+        <Key id="shift_left" mod="shift_left" label="&#8657; Shift" />
+        {bottomRow.map((label, key) => <Key id={label.toLowerCase()} key={key} label={label} />)}
+        <Key id="shift_right" mod="shift_right" label="&#8657; Shift" />
       </div>
       <div className="row">
-        <div className="key key_bottom">Ctrl</div>
-        <div className="key key_bottom">Win</div>
-        <div className="key key_bottom">Alt</div>
-        <div className="key key_space"></div>
-        <div className="key key_bottom">Alt</div>
-        <div className="key key_bottom">Fn</div>
-        <div className="key key_bottom">Menu</div>
-        <div className="key key_bottom">Ctrl</div>
+        <Key mod="bottom" id="ctrl" label="Ctrl" />
+        <Key mod="bottom" id="win" label="Win" />
+        <Key mod="bottom" id="alt" label="Alt" />
+        <Key mod="space" id="space" />
+        <Key mod="bottom" id="alt" label="Alt" />
+        <Key mod="bottom" id="fn" label="Fn" />
+        <Key mod="bottom" id="menu" label="Menu" />
+        <Key mod="bottom" id="ctrl" label="Ctrl" />
       </div>
     </section>
 
     <section className="keyset" id="stuff1">
       <div className="row">
-        <div className="key key_label_small">PrtSc</div>
-        <div className="key key_label_small">Pause</div>
-        <div className="key key_label_small">ScrLk</div>
+        <Key id="print_screen" label="PrtSc" />
+        <Key id="pause" label="Pause" />
+        <Key id="scroll_lock" label="ScrLk" />
       </div>
     </section>
     <section className="keyset" id="stuff2">
       <div className="row">
-        <div className="key key_label_small">Ins</div>
-        <div className="key key_label_small">Home</div>
-        <div className="key key_label_small">Page up</div>
+        <Key id="insert" label="Ins" />
+        <Key id="home" label="Home" />
+        <Key id="page_up" label="Page up" />
       </div>
       <div className="row">
-        <div className="key key_label_small">Delete</div>
-        <div className="key key_label_small">End</div>
-        <div className="key key_label_small">Page down</div>
+        <Key id="delete" label="Delete" />
+        <Key id="end" label="End" />
+        <Key id="page down" label="Page down" />
       </div>
       <div className="row" />
       <div className="row row_center">
-        <div className="key">&uarr;</div>
+        <Key id="arrow_up" label="&uarr;" />
       </div>
       <div className="row">
-        <div className="key">&larr;</div>
-        <div className="key">&darr;</div>
-        <div className="key">&rarr;</div>
+        <Key id="arrow_left" label="&larr;" />
+        <Key id="arrow_down" label="&darr;" />
+        <Key id="arrow_right" label="&rarr;" />
       </div>
     </section>
   </div>
