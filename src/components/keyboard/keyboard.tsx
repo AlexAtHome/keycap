@@ -1,46 +1,75 @@
-import React, { useState } from 'react'
-import useEventListener from "@use-it/event-listener";
+import React from 'react'
 
 import { Key } from '../key/key'
 import './keyboard.css'
 import { bottomRow, fRow, middleRow, numbersRow, topRow } from './keys'
 
-export const Keyboard: React.FC = () => {
-  const [isShiftPressed, setShiftPressed] = useState(false);
-  useEventListener('keydown', (event: KeyboardEvent) => {
-    setShiftPressed(event.key === 'Shift');
-  })
-  useEventListener('keyup', (event: KeyboardEvent) => {
-    setShiftPressed(event.key === 'Shift' && isShiftPressed ? false : true);
-  })
+interface IKeyboardState {
+  isShiftPressed: boolean
+};
 
-  return <div className="Keyboard">
+export class Keyboard extends React.Component<unknown, IKeyboardState> {
+  constructor(props: unknown) {
+    super(props)
+    this.state = {
+      isShiftPressed: false
+    }
+  }
+
+  componentDidMount(): void {
+    window.addEventListener('keydown', this._keyDownListener.bind(this))
+    window.addEventListener('keyup', this._keyUpListener.bind(this))
+  }
+
+  componentWillUnmount(): void {
+    window.removeEventListener('keydown', this._keyDownListener.bind(this))
+    window.removeEventListener('keyup', this._keyUpListener.bind(this))
+  }
+
+  private _keyDownListener(event: KeyboardEvent): void {
+    if (!this.state.isShiftPressed && event.key === 'Shift') {
+      this.setState({
+        isShiftPressed: true
+      })
+    }
+  }
+
+  private _keyUpListener(event: KeyboardEvent): void {
+    if (this.state.isShiftPressed && event.key === 'Shift') {
+      this.setState({
+        isShiftPressed: false
+      })
+    }
+  }
+
+  render() {
+    return <div className="Keyboard">
     <div className="wrap">
       <section className="keyset" id="functional">
         <div className="row">
           <Key id="esc" mod="esc" label="Esc" />
-          {fRow.map((label, key) => <Key id={label.toLowerCase()} mod="f" key={key} label={isShiftPressed ? label.toUpperCase() : label} />)}
+          {fRow.map((label, key) => <Key id={label.toLowerCase()} mod="f" key={key} label={this.state.isShiftPressed ? label.toUpperCase() : label} />)}
         </div>
       </section>
 
       <section className="keyset" id="letters">
         <div className="row">
-          {numbersRow.map((label, key) => <Key id={label.toLowerCase()} key={key} label={isShiftPressed ? label.toUpperCase() : label} />)}
+          {numbersRow.map((label, key) => <Key id={label.toLowerCase()} key={key} label={this.state.isShiftPressed ? label.toUpperCase() : label} />)}
           <Key id="backspace" mod="backspace" label="&larr; Back" />
         </div>
         <div className="row">
           <Key id="tab" mod="tab" label="Tab&#8646;" />
-          {topRow.map((label, key) => <Key id={label.toLowerCase()} key={key} label={isShiftPressed ? label.toUpperCase() : label} />)}
+          {topRow.map((label, key) => <Key id={label.toLowerCase()} key={key} label={this.state.isShiftPressed ? label.toUpperCase() : label} />)}
           <Key id="backslash" mod="slash" label="\" />
         </div>
         <div className="row">
           <Key id="caps_lock" mod="caps" label="Caps Lock" />
-          {middleRow.map((label, key) => <Key id={label.toLowerCase()} key={key} label={isShiftPressed ? label.toUpperCase() : label} />)}
+          {middleRow.map((label, key) => <Key id={label.toLowerCase()} key={key} label={this.state.isShiftPressed ? label.toUpperCase() : label} />)}
           <Key id="enter" mod="enter" label="Enter &#8626;" />
         </div>
         <div className="row">
           <Key id="shift_left" mod="shift_left" label="&#8657; Shift" />
-          {bottomRow.map((label, key) => <Key id={label.toLowerCase()} key={key} label={isShiftPressed ? label.toUpperCase() : label} />)}
+          {bottomRow.map((label, key) => <Key id={label.toLowerCase()} key={key} label={this.state.isShiftPressed ? label.toUpperCase() : label} />)}
           <Key id="shift_right" mod="shift_right" label="&#8657; Shift" />
         </div>
         <div className="row">
@@ -85,4 +114,5 @@ export const Keyboard: React.FC = () => {
       </section>
     </div>
   </div>
+  }
 }
