@@ -1,61 +1,59 @@
-
 .key {
-  width: var(--key-size);
-  height: var(--key-size);
-  border-radius: 4px;
-  background-color: #fff;
-  border: 8px solid #eee;
-  border-top: 3px solid #eee;
-  border-bottom-width: 8px;
-  color: #222;
-  padding-top: 2px;
+	width: var(--key-size);
+	height: var(--key-size);
+	border-radius: 4px;
+	background-color: #fff;
+	border: 8px solid #eee;
+	border-top: 3px solid #eee;
+	border-bottom-width: 8px;
+	color: #222;
+	padding-top: 2px;
 }
 
 .key_backspace {
-  width: calc(var(--key-size) * 2 + var(--key-gap));
+	width: calc(var(--key-size) * 2 + var(--key-gap));
 }
 
 .key_esc {
-  margin-right: calc(var(--key-size) + var(--key-gap));
+	margin-right: calc(var(--key-size) + var(--key-gap));
 }
 
 .key_f:nth-child(4n + 1):not(:last-child) {
-  margin-right: calc(var(--key-size) / 2);
+	margin-right: calc(var(--key-size) / 2);
 }
 
 .key_tab {
-  width: calc(var(--key-size) * 1.43);
+	width: calc(var(--key-size) * 1.43);
 }
 
 .key_caps {
-  width: calc(var(--key-size) * 1.65);
+	width: calc(var(--key-size) * 1.65);
 }
 
 .key_slash {
-  width: calc(var(--key-size) * 1.58);
+	width: calc(var(--key-size) * 1.58);
 }
 
 .key_enter {
-  width: calc(var(--key-size) * 2.38);
+	width: calc(var(--key-size) * 2.38);
 }
 
 .key_shift_left {
-  width: calc(var(--key-size) * 2.13);
+	width: calc(var(--key-size) * 2.13);
 }
 
 .key_shift_right {
-  width: calc(var(--key-size) * 2.92);
+	width: calc(var(--key-size) * 2.92);
 }
 
 .key_bottom {
-  width: calc(var(--key-size) * 1.2);
+	width: calc(var(--key-size) * 1.2);
 }
 
 .key_space {
-  width: calc(var(--key-size) * 6.8);
+	width: calc(var(--key-size) * 6.8);
 }
 
 .key_label_small {
-  font-size: .8em;
+	font-size: 0.8em;
 }
-
