@@ -1,0 +1,14 @@
+pre-push:
+  commands:
+    packages-audit:
+      tags: frontend security
+      run: npm run audit
+
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      glob: "*.{ts,tsx}"
+      run:
+        - npm run prettier:fix {staged_files}
+        - npm run lint:fix {staged_files}
