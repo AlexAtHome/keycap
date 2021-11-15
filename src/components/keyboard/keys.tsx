@@ -1,6 +1,16 @@
-export const fRow = Array(12)
+export interface IKey {
+	code: string
+	label: string
+	shiftLabel?: string
+	widthScale?: number
+}
+
+export const fRow: IKey[] = Array(12)
 	.fill('')
-	.map((_, index) => `F${index + 1}`)
+	.map((_, index) => ({
+		code: `F${index + 1}`,
+		label: `F${index + 1}`
+	}))
 
 export const numbersRow = ['` ~', '1 !', '2 @', '3 #', '4 $', '5 %', '6 ^', '7 &', '8 *', '9 (', '0 )', '- _', '=+']
 

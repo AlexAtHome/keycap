@@ -40,6 +40,7 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 				isShiftPressed: false,
 			})
 		}
+		console.log(event.code);
 	}
 
 	render() {
@@ -49,12 +50,11 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 					<section className='keyset' id='functional'>
 						<div className='row'>
 							<Key id='esc' mod='esc' label='Esc' />
-							{fRow.map((label, key) => (
+							{fRow.map((key, i) => (
 								<Key
-									id={label.toLowerCase()}
-									mod='f'
-									key={key}
-									label={this.state.isShiftPressed ? label.toUpperCase() : label}
+									id={key.code}
+									key={i}
+									label={this.state.isShiftPressed ? (key.shiftLabel ?? key.label) : key.label}
 								/>
 							))}
 						</div>
