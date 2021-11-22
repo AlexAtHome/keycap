@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/keycap/static/css/main.72e1b908.chunk.css",
+    "main.js": "/keycap/static/js/main.76e81c1b.chunk.js",
+    "main.js.map": "/keycap/static/js/main.76e81c1b.chunk.js.map",
+    "runtime-main.js": "/keycap/static/js/runtime-main.202d906d.js",
+    "runtime-main.js.map": "/keycap/static/js/runtime-main.202d906d.js.map",
+    "static/js/2.2a95d0fc.chunk.js": "/keycap/static/js/2.2a95d0fc.chunk.js",
+    "static/js/2.2a95d0fc.chunk.js.map": "/keycap/static/js/2.2a95d0fc.chunk.js.map",
+    "static/js/3.19371775.chunk.js": "/keycap/static/js/3.19371775.chunk.js",
+    "static/js/3.19371775.chunk.js.map": "/keycap/static/js/3.19371775.chunk.js.map",
+    "index.html": "/keycap/index.html",
+    "static/css/main.72e1b908.chunk.css.map": "/keycap/static/css/main.72e1b908.chunk.css.map",
+    "static/js/2.2a95d0fc.chunk.js.LICENSE.txt": "/keycap/static/js/2.2a95d0fc.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.202d906d.js",
+    "static/js/2.2a95d0fc.chunk.js",
+    "static/css/main.72e1b908.chunk.css",
+    "static/js/main.76e81c1b.chunk.js"
+  ]
+}
