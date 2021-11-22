@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Key } from '../key/key'
 import './keyboard.css'
-import { bottomRow, fRow, middleRow, numbersRow, topRow } from './keys'
+import { bottomRow, funcRow, middleRow, numbersRow, topRow } from './keys'
 
 interface IKeyboardState {
 	isShiftPressed: boolean
@@ -49,12 +49,13 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 				<div className='wrap'>
 					<section className='keyset' id='functional'>
 						<div className='row'>
-							<Key id='esc' mod='esc' label='Esc' />
-							{fRow.map((key, i) => (
+							{/* <Key id='esc' mod='esc' label='Esc' /> */}
+							{funcRow.map((key, i) => (
 								<Key
-									id={key.code}
+									id={key.code.toLowerCase()}
 									key={i}
 									label={this.state.isShiftPressed ? key.shiftLabel ?? key.label : key.label}
+									offsetRight={key.offsetRight}
 								/>
 							))}
 						</div>

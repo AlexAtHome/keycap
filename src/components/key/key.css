@@ -1,3 +1,7 @@
+:root {
+	--key-offset-ratio: 0;
+}
+
 .key {
 	width: var(--key-size);
 	height: var(--key-size);
@@ -5,6 +9,7 @@
 	background-color: #fff;
 	border: 8px solid #eee;
 	border-top: 3px solid #eee;
+	margin-right: calc(var(--key-offset-ratio) * var(--key-size));
 	border-bottom-width: 8px;
 	color: #222;
 	padding-top: 2px;
