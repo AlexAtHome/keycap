@@ -1,0 +1,23 @@
+.reset-button {
+	padding: 3px;
+	border: 1px solid #555;
+	background-color: #eee;
+	border-radius: 15px;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	font-family: inherit;
+	cursor: pointer;
+}
+
+.reset-button:hover {
+	background-color: #ddd;
+}
+
+.reset-button:active {
+	background-color: #aaa;
+}
