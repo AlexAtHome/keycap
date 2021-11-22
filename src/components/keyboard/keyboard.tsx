@@ -63,7 +63,3 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 		)
 	}
 }
-function dispatch(arg0: { payload: string; type: "add" }) {
-	throw new Error('Function not implemented.')
-}
-
