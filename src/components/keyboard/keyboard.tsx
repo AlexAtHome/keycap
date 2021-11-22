@@ -1,4 +1,6 @@
 import React from 'react'
+import { addPressedKey } from '../../reducers'
+import { store } from '../../store'
 
 import { KeyRow } from './key-row'
 import './keyboard.css'
@@ -33,7 +35,7 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 				isShiftPressed: true,
 			})
 		}
-		console.log(event.code)
+		store.dispatch(addPressedKey(event.code))
 	}
 
 	private _keyUpListener(event: KeyboardEvent): void {
@@ -60,3 +62,7 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 		)
 	}
 }
+function dispatch(arg0: { payload: string; type: "add" }) {
+	throw new Error('Function not implemented.')
+}
+

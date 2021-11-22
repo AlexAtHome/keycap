@@ -7,6 +7,7 @@ interface IProps {
 	mod?: string
 	offsetRight?: number | null
 	widthRatio?: number | null
+	isPressed?: boolean
 }
 
 export const Key: React.FC<IProps> = ({ label = '', id, mod, offsetRight = null, widthRatio = null }) => {
