@@ -5,12 +5,18 @@ import { Keyboard } from './components/keyboard/keyboard'
 function App() {
 	return (
 		<main className='App'>
-			<h1>Keycap</h1>
-			<p>
-				<small>The keyboard tester</small>
-			</p>
+			<header className="App__header">
+				<h1 className="App__title">Keycap</h1>
+				<div className="App__subtitle">
+					<small>The keyboard tester</small>
+				</div>
+			</header>
 
-			<Keyboard />
+			<div className="container">
+				<Keyboard />
+			</div>
+
+			<footer className="App__footer" />
 		</main>
 	)
 }
