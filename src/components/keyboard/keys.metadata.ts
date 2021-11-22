@@ -349,7 +349,8 @@ export const ansiKeyboard: ISection[] = [
 				} as IKey)),
 				{
 					code: 'NumpadEnter',
-					label: '',
+					label: '&#8626;',
+					isLabelHTML: true,
 					heightRatio: 2.03
 				}
 			],
