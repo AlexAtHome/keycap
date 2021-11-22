@@ -1,16 +1,4 @@
-export interface IKey {
-	code: string
-	label: string
-	shiftLabel?: string
-	widthRatio?: number
-	offsetRight?: number
-}
-
-const convertStringToKeys = (letters: string): IKey[] => letters.split('').map(char => ({
-	code: `Key${char}`,
-	label: char.toLowerCase(),
-	shiftLabel: char
-} as IKey))
+import { convertStringToKeys, IKey, ISection } from "./keys.interface"
 
 export const funcRow: IKey[] = [
 	{
@@ -22,7 +10,7 @@ export const funcRow: IKey[] = [
 		code: `F${index + 1}`,
 		label: `F${index + 1}`,
 		offsetRight: [3,7].includes(index) ? .5 : 0,
-	}))
+	} as IKey))
 ]
 
 export const numbers: IKey[] = [
@@ -206,10 +194,23 @@ export const spaceRow: IKey[] = [
 	},
 ]
 
-export const ansiSet: IKey[][] = [
-	numbers,
-	topLetters,
-	middleLetters,
-	bottomLetters,
-	spaceRow
+export const ansiKeyboard: ISection[] = [
+	{
+		id: 'functional',
+		rows: [
+			{
+				keys: funcRow,
+			}
+		]
+	},
+	{
+		id: 'letters',
+		rows: [
+			numbers,
+			topLetters,
+			middleLetters,
+			bottomLetters,
+			spaceRow
+		]
+	}
 ]
