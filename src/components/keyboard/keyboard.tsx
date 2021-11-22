@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Key } from '../key/key'
 import './keyboard.css'
-import { bottomRow, funcRow, middleRow, numbersRow, topRow } from './keys'
+import { ansiSet, funcRow } from './keys'
 
 interface IKeyboardState {
 	isShiftPressed: boolean
@@ -27,11 +27,13 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 	}
 
 	private _keyDownListener(event: KeyboardEvent): void {
+		event.preventDefault()
 		if (!this.state.isShiftPressed && event.key === 'Shift') {
 			this.setState({
 				isShiftPressed: true,
 			})
 		}
+		console.log(event.code)
 	}
 
 	private _keyUpListener(event: KeyboardEvent): void {
@@ -40,7 +42,6 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 				isShiftPressed: false,
 			})
 		}
-		console.log(event.code)
 	}
 
 	render() {
@@ -49,7 +50,6 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 				<div className='wrap'>
 					<section className='keyset' id='functional'>
 						<div className='row'>
-							{/* <Key id='esc' mod='esc' label='Esc' /> */}
 							{funcRow.map((key, i) => (
 								<Key
 									id={key.code.toLowerCase()}
@@ -63,59 +63,19 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 					</section>
 
 					<section className='keyset' id='letters'>
-						<div className='row'>
-							{numbersRow.map((label, key) => (
-								<Key
-									id={label.toLowerCase()}
-									key={key}
-									label={this.state.isShiftPressed ? label.toUpperCase() : label}
-								/>
-							))}
-							<Key id='backspace' mod='backspace' label='&larr; Back' />
-						</div>
-						<div className='row'>
-							<Key id='tab' mod='tab' label='Tab&#8646;' />
-							{topRow.map((label, key) => (
-								<Key
-									id={label.toLowerCase()}
-									key={key}
-									label={this.state.isShiftPressed ? label.toUpperCase() : label}
-								/>
-							))}
-							<Key id='backslash' mod='slash' label='\' />
-						</div>
-						<div className='row'>
-							<Key id='caps_lock' mod='caps' label='Caps Lock' />
-							{middleRow.map((label, key) => (
-								<Key
-									id={label.toLowerCase()}
-									key={key}
-									label={this.state.isShiftPressed ? label.toUpperCase() : label}
-								/>
-							))}
-							<Key id='enter' mod='enter' label='Enter &#8626;' />
-						</div>
-						<div className='row'>
-							<Key id='shift_left' mod='shift_left' label='&#8657; Shift' />
-							{bottomRow.map((label, key) => (
-								<Key
-									id={label.toLowerCase()}
-									key={key}
-									label={this.state.isShiftPressed ? label.toUpperCase() : label}
-								/>
-							))}
-							<Key id='shift_right' mod='shift_right' label='&#8657; Shift' />
-						</div>
-						<div className='row'>
-							<Key mod='bottom' id='ctrl' label='Ctrl' />
-							<Key mod='bottom' id='win' label='Win' />
-							<Key mod='bottom' id='alt' label='Alt' />
-							<Key mod='space' id='space' />
-							<Key mod='bottom' id='alt' label='Alt' />
-							<Key mod='bottom' id='fn' label='Fn' />
-							<Key mod='bottom' id='menu' label='Menu' />
-							<Key mod='bottom' id='ctrl' label='Ctrl' />
-						</div>
+						{ansiSet.map((row, key) => (
+							<div className='row' key={key}>
+								{row.map((key, i) => (
+									<Key
+										id={key.code}
+										key={i}
+										label={this.state.isShiftPressed ? key.shiftLabel ?? key.label : key.label}
+										offsetRight={key.offsetRight}
+										widthRatio={key.widthRatio}
+									/>
+								))}
+							</div>
+						))}
 					</section>
 
 					<section className='keyset' id='stuff1'>
