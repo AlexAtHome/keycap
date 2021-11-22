@@ -1,3 +1,4 @@
+import { triggerAsyncId } from "async_hooks"
 import { convertStringToKeys, IKey, ISection } from "./keys.interface"
 
 export const funcRow: IKey[] = [
@@ -69,6 +70,7 @@ export const numbers: IKey[] = [
 	{
 		code: 'Backspace',
 		label: `&larr; Back`,
+		isLabelHTML: true,
 		widthRatio: 2
 	}
 ]
@@ -77,6 +79,7 @@ export const topLetters: IKey[] = [
 	{
 		code: 'Tab',
 		label: 'Tab&#8646;',
+		isLabelHTML: true,
 		widthRatio: 1.43,
 	},
 	...convertStringToKeys('QWERTYUIOP'),
@@ -118,6 +121,7 @@ export const middleLetters: IKey[] = [
 	{
 		code: 'Enter',
 		label: 'Enter &#8626;',
+		isLabelHTML: true,
 		widthRatio: 2.38
 	}
 ]
@@ -126,6 +130,7 @@ export const bottomLetters: IKey[] = [
 	{
 		code: 'ShiftLeft',
 		label: '&#8657; Shift',
+		isLabelHTML: true,
 		widthRatio: 2.13
 	},
 	...convertStringToKeys('ZXCVBNM'),
@@ -147,6 +152,7 @@ export const bottomLetters: IKey[] = [
 	{
 		code: 'ShiftRight',
 		label: '&#8657; Shift',
+		isLabelHTML: true,
 		widthRatio: 2.92,
 	}
 ]

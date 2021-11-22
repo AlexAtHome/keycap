@@ -1,6 +1,7 @@
 export interface IKey {
 	code: string
 	label: string
+	isLabelHTML?: boolean
 	shiftLabel?: string
 	widthRatio?: number
 	offsetRight?: number
