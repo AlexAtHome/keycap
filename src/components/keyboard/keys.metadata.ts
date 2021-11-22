@@ -139,7 +139,7 @@ export const bottomLetters: IKey[] = [
 		shiftLabel: '<'
 	},
 	{
-		code: 'Period.',
+		code: 'Period',
 		label: '.',
 		shiftLabel: '>'
 	},
