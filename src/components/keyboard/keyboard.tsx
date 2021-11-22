@@ -35,6 +35,7 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 				isShiftPressed: true,
 			})
 		}
+		console.log(event.code);
 		store.dispatch(addPressedKey(event.code))
 	}
 

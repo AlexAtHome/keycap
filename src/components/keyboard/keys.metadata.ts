@@ -2,7 +2,7 @@ import { convertStringToKeys, IKey, ISection } from "./keys.interface"
 
 export const funcRow: IKey[] = [
 	{
-		code: 'Esc',
+		code: 'Escape',
 		label: 'Esc',
 		offsetRight: 1.05,
 	},
@@ -188,7 +188,7 @@ export const spaceRow: IKey[] = [
 		widthRatio: 1.2
 	},
 	{
-		code: 'CtrlRight',
+		code: 'ControlRight',
 		label: 'Ctrl',
 		widthRatio: 1.2
 	},

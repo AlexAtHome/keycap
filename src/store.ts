@@ -3,7 +3,7 @@ import { pressedKeysReducer } from "./reducers";
 
 export const store = configureStore({
 	reducer: {
-		pressedKeysReducer
+		pressedKeys: pressedKeysReducer
 	},
 })
 
