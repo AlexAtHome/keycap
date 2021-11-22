@@ -4,6 +4,7 @@ export interface IKey {
 	isLabelHTML?: boolean
 	shiftLabel?: string
 	widthRatio?: number
+	heightRatio?: number
 	offsetRight?: number
 }
 

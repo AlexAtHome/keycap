@@ -29,6 +29,7 @@ export const KeyRow: React.FC<IKeyRowProps> = ({ row, isShiftPressed }) => {
 				label={isShiftPressed ? key.shiftLabel ?? key.label : key.label}
 				offsetRight={key.offsetRight}
 				widthRatio={key.widthRatio}
+				heightRatio={key.heightRatio}
 				isPressed={pressedKeys.includes(key.code)}
 			/>
 		))}

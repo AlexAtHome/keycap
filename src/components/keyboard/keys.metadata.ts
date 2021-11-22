@@ -199,6 +199,21 @@ export const spaceRow: IKey[] = [
 	},
 ]
 
+export const controls: IKey[] = [
+	{
+		code: 'PrintScreen',
+		label: "Print Screen"
+	},
+	{
+		code: 'ScrollLock',
+		label: 'Scroll Lock',
+	},
+	{
+		code: 'Pause',
+		label: 'Pause Break'
+	}
+]
+
 export const ansiKeyboard: ISection[] = [
 	{
 		id: 'functional',
@@ -216,6 +231,139 @@ export const ansiKeyboard: ISection[] = [
 			middleLetters,
 			bottomLetters,
 			spaceRow
+		]
+	},
+	{
+		id: 'control1',
+		rows: [controls]
+	},
+	{
+		id: 'control2',
+		rows: [
+			{
+				keys: [
+					{
+						code: 'Insert',
+						label: 'Insert'
+					},
+					{
+						code: 'Home',
+						label: 'Home'
+					},
+					{
+						code: 'PageUp',
+						label: 'Page Up',
+					}
+				]
+			},
+			{
+				keys: [
+					{
+						code: 'Delete',
+						label: 'Delete'
+					},
+					{
+						code: 'End',
+						label: 'End'
+					},
+					{
+						code: 'PageDown',
+						label: 'Page Down'
+					}
+				]
+			},
+			{
+				keys: []
+			},
+			{
+				align: 'center',
+				keys: [
+					{
+						code: 'ArrowUp',
+						label: '&uarr;',
+						isLabelHTML: true
+					}
+				]
+			},
+			{
+				keys: [
+					{
+						code: 'ArrowLeft',
+						label: '&larr;',
+						isLabelHTML: true
+					},
+					{
+						code: 'ArrowDown',
+						label: '&darr;',
+						isLabelHTML: true
+					},
+					{
+						code: 'ArrowRight',
+						label: '&rarr;',
+						isLabelHTML: true
+					},
+				]
+			}
+		]
+	},
+	{
+		id: 'numpad',
+		rows: [
+			[
+				{
+					code: 'NumLock',
+					label: 'Num Lock'
+				},
+				{
+					code: 'NumpadDivide',
+					label: '/'
+				},
+				{
+					code: 'NumpadMultiply',
+					label: '*'
+				},
+				{
+					code: 'NumpadSubtract',
+					label: '-'
+				},
+			],
+			[
+				...[7,8,9].map(key => ({
+					code: `Numpad${key}`,
+					label: `${key}`
+				} as IKey)),
+				{
+					code: 'NumpadAdd',
+					label: '+',
+					heightRatio: 2.03
+				}
+			],
+			[4,5,6].map(key => ({
+				code: `Numpad${key}`,
+				label: `${key}`
+			} as IKey)),
+			[
+					...[1,2,3].map(key => ({
+					code: `Numpad${key}`,
+					label: `${key}`
+				} as IKey)),
+				{
+					code: 'NumpadEnter',
+					label: '',
+					heightRatio: 2.03
+				}
+			],
+			[
+				{
+					code: 'Numpad0',
+					label: '0',
+					widthRatio: 2.03
+				},
+				{
+					code: 'NumpadDecimal',
+					label: '.'
+				}
+			]
 		]
 	}
 ]

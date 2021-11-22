@@ -10,14 +10,16 @@ interface IProps {
 	mod?: string
 	offsetRight?: number | null
 	widthRatio?: number | null
+	heightRatio?: number | null
 	isPressed?: boolean
 	isLabelHTML?: boolean
 }
 
-export const Key: React.FC<IProps> = ({ label = '', id, offsetRight = null, widthRatio = null, isPressed = false, isLabelHTML = false }) => {
+export const Key: React.FC<IProps> = ({ label = '', id, offsetRight = null, widthRatio = null, heightRatio = null, isPressed = false, isLabelHTML = false }) => {
 	const styles = {
 		'--key-offset-ratio': offsetRight,
-		'--key-width-ratio': widthRatio
+		'--key-width-ratio': widthRatio,
+		'--key-height-ratio': heightRatio,
 	} as React.CSSProperties
 	return <div id={`key_${id}`} style={styles} className={clsx(`key`, { 'key_pressed': isPressed })}>
 		{isLabelHTML ? parse(label) : label}

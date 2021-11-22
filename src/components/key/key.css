@@ -1,11 +1,14 @@
 :root {
 	--key-offset-ratio: 0;
 	--key-width-ratio: 1;
+	--key-height-ratio: 1;
+	--key-width-span: 1;
+	--key-height-span: 1;
 }
 
 .key {
 	width: calc(var(--key-width-ratio) * var(--key-size));
-	height: var(--key-size);
+	height: calc(var(--key-height-ratio) * var(--key-size));
 	border-radius: 4px;
 	background-color: #fff;
 	border: 8px solid #eee;
