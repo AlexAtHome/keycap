@@ -40,7 +40,7 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 				isShiftPressed: false,
 			})
 		}
-		console.log(event.code);
+		console.log(event.code)
 	}
 
 	render() {
@@ -54,7 +54,7 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 								<Key
 									id={key.code}
 									key={i}
-									label={this.state.isShiftPressed ? (key.shiftLabel ?? key.label) : key.label}
+									label={this.state.isShiftPressed ? key.shiftLabel ?? key.label : key.label}
 								/>
 							))}
 						</div>
