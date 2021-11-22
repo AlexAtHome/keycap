@@ -13,8 +13,17 @@
 }
 
 .container {
-	display: flex;
-	justify-content: center;
+	display: block;
 	position: relative;
-	margin: 0 auto;
+	margin: 40px auto 0;
+}
+
+.container_flex {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.container:not(.container_full-width) {
+	max-width: 900px;
 }
