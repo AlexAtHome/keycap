@@ -2,7 +2,7 @@ export interface IKey {
 	code: string
 	label: string
 	shiftLabel?: string
-	widthScale?: number
+	widthRatio?: number
 	offsetRight?: number
 }
 
@@ -10,7 +10,7 @@ export const funcRow: IKey[] = [
 	{
 		code: 'Esc',
 		label: 'Esc',
-		offsetRight: 1.05
+		offsetRight: 1.05,
 	},
 	...Array(12).fill('').map((_, index) => ({
 		code: `F${index + 1}`,

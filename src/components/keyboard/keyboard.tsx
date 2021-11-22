@@ -56,6 +56,7 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 									key={i}
 									label={this.state.isShiftPressed ? key.shiftLabel ?? key.label : key.label}
 									offsetRight={key.offsetRight}
+									widthRatio={key.widthRatio}
 								/>
 							))}
 						</div>
