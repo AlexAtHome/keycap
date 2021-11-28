@@ -1,7 +1,8 @@
 .reset-button {
 	padding: 3px;
-	border: 1px solid #555;
-	background-color: #eee;
+	border: 1px solid var(--reset-border-color, #555);
+	background-color: var(--reset-background-color, #eee);
+	color: var(--reset-color, #222);
 	border-radius: 15px;
 	position: absolute;
 	top: 15px;
@@ -15,9 +16,9 @@
 }
 
 .reset-button:hover {
-	background-color: #ddd;
+	background-color: var(--reset-background-color_hover,#ddd);
 }
 
 .reset-button:active {
-	background-color: #aaa;
+	background-color: var(--reset-background-color_active, #aaa);
 }

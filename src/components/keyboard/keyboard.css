@@ -7,7 +7,7 @@
 	display: block;
 	position: relative;
 	text-align: center;
-	background-color: #a2a2a2;
+	background-color: var(--keyboard-background-color,#a2a2a2);
 	padding: 20px;
 	border-radius: 20px;
 

@@ -10,21 +10,23 @@
 	width: calc(var(--key-width-ratio) * var(--key-size));
 	height: calc(var(--key-height-ratio) * var(--key-size));
 	border-radius: 4px;
-	background-color: #fff;
-	border: 8px solid #eee;
-	border-top: 3px solid #eee;
+	background-color: var(--key-background-color, #fff);
+	border: 8px solid var(--key-border-color, #eee);
+	border-top: 3px solid var(--key-border-color, #eee);
 	margin-right: calc(var(--key-offset-ratio) * var(--key-size));
 	border-bottom-width: 8px;
-	color: #222;
+	color: var(--key-legend-color, #222);
 	padding-top: 2px;
 }
 
 .key_pressed {
-	background-color: tomato;
-	border-color: rgb(190, 101, 85);
+	--key-background-color: var(--key-background-color_pressed, tomato);
+	--key-border-color: var(--key-border-color_pressed, rgb(190, 101, 85));
+	--key-legend-color: var(--key-legend-color_pressed, #222);
 }
 
 .key_active {
-	background-color: yellowgreen;
-	border-color: rgb(99, 133, 33);
+	--key-background-color: var(--key-background-color_active, yellowgreen);
+	--key-border-color: var(--key-border-color_active, rgb(99, 133, 33));
+	--key-legend-color: var(--key-legend-color_active, #222);
 }
