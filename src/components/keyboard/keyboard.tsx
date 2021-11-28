@@ -6,6 +6,7 @@ import { KeyRow } from './key-row'
 import './keyboard.css'
 import { ansiKeyboard } from './keys.metadata'
 import {ResetButton} from '../reset-button/reset-button'
+import { addActiveKey, removeActiveKey } from '../../reducers/active-keys'
 
 interface IKeyboardState {
 	isShiftPressed: boolean
@@ -52,6 +53,7 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 			})
 		}
 		store.dispatch(addPressedKey(event.code))
+		store.dispatch(addActiveKey(event.code))
 	}
 
 	private _keyUpListener(event: KeyboardEvent): void {
@@ -60,6 +62,7 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 				isShiftPressed: false,
 			})
 		}
+		store.dispatch(removeActiveKey(event.code))
 	}
 
 	private _reset(): void {

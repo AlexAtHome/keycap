@@ -1,9 +1,9 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
+import { createAction, createReducer } from "@reduxjs/toolkit"
 
-type State = string[];
+type State = string[]
 
-export const addPressedKey = createAction<string, 'add'>('add');
-export const resetPressedKeys = createAction<void, 'reset'>('reset')
+export const addPressedKey = createAction<string, 'pressed/add'>('pressed/add')
+export const resetPressedKeys = createAction<void, 'pressed/reset'>('pressed/reset')
 
 export const pressedKeysReducer = createReducer<State>([], builder => {
 	builder
