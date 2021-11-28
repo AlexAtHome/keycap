@@ -18,7 +18,7 @@ export const KeyRow: React.FC<IKeyRowProps> = ({ row, isShiftPressed }) => {
 		'row_center': isDto && row.align === 'center',
 		'row_right': isDto && row.align === 'right',
 	}
-  const pressedKeys = useSelector((state: RootState) => state.pressedKeys)
+  const [pressedKeys, activeKeys] = useSelector((state: RootState) => [state.pressedKeys, state.activeKeys])
 
 	return <div className={clsx(['row', alignClasses])} id={isDto ? row?.id : undefined}>
 		{keys.map((key, i) => (
@@ -31,6 +31,7 @@ export const KeyRow: React.FC<IKeyRowProps> = ({ row, isShiftPressed }) => {
 				widthRatio={key.widthRatio}
 				heightRatio={key.heightRatio}
 				isPressed={pressedKeys.includes(key.code)}
+				isActive={activeKeys.includes(key.code)}
 			/>
 		))}
 	</div>

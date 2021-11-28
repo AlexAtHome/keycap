@@ -23,3 +23,8 @@
 	background-color: tomato;
 	border-color: rgb(190, 101, 85);
 }
+
+.key_active {
+	background-color: yellowgreen;
+	border-color: rgb(99, 133, 33);
+}

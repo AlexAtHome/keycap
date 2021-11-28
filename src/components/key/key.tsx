@@ -12,16 +12,17 @@ interface IProps {
 	widthRatio?: number | null
 	heightRatio?: number | null
 	isPressed?: boolean
+	isActive?: boolean
 	isLabelHTML?: boolean
 }
 
-export const Key: React.FC<IProps> = ({ label = '', id, offsetRight = null, widthRatio = null, heightRatio = null, isPressed = false, isLabelHTML = false }) => {
+export const Key: React.FC<IProps> = ({ label = '', id, offsetRight = null, widthRatio = null, heightRatio = null, isPressed = false, isLabelHTML = false, isActive = false }) => {
 	const styles = {
 		'--key-offset-ratio': offsetRight,
 		'--key-width-ratio': widthRatio,
 		'--key-height-ratio': heightRatio,
 	} as React.CSSProperties
-	return <div id={`key_${id}`} style={styles} className={clsx(`key`, { 'key_pressed': isPressed })}>
+	return <div id={`key_${id}`} style={styles} className={clsx(`key`, { 'key_pressed': isPressed, 'key_active': isActive })}>
 		{isLabelHTML ? parse(label) : label}
 	</div>
 }
