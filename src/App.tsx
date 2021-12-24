@@ -1,8 +1,8 @@
 import React from 'react'
 import './App.css'
-import { Keyboard } from './components/keyboard/keyboard'
+import {KeyboardPage} from './pages/keyboard'
 
-function App() {
+const App: React.FC = () => {
 	return (
 		<main className='App'>
 			<header className="App__header">
@@ -12,9 +12,7 @@ function App() {
 				</div>
 			</header>
 
-			<div className="container container_flex container_full-width">
-				<Keyboard />
-			</div>
+			<KeyboardPage />
 
 			<div className="container">
 				<p>This app lets you check if all keys on your keyboard are in order.</p>
