@@ -7,6 +7,7 @@ import './keyboard.css'
 import { ansiKeyboard } from './keys.metadata'
 import {ResetButton} from '../reset-button/reset-button'
 import { addActiveKey, removeActiveKey } from '../../reducers/active-keys'
+import { Unsubscribe } from '@reduxjs/toolkit'
 
 interface IKeyboardState {
 	isShiftPressed: boolean
@@ -14,6 +15,8 @@ interface IKeyboardState {
 }
 
 export class Keyboard extends React.Component<unknown, IKeyboardState> {
+	private unsubscribe: Unsubscribe = () => undefined;
+	
 	constructor(props: unknown) {
 		super(props)
 		this.state = {
@@ -25,7 +28,7 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 	componentDidMount(): void {
 		window.addEventListener('keydown', this._keyDownListener.bind(this))
 		window.addEventListener('keyup', this._keyUpListener.bind(this))
-		store.subscribe(() => {
+		this.unsubscribe = store.subscribe(() => {
 			const canReset = store.getState().pressedKeys.length > 0;
 			if (canReset && !this.state.canReset) {
 				this.setState({
@@ -43,6 +46,9 @@ export class Keyboard extends React.Component<unknown, IKeyboardState> {
 	componentWillUnmount(): void {
 		window.removeEventListener('keydown', this._keyDownListener.bind(this))
 		window.removeEventListener('keyup', this._keyUpListener.bind(this))
+		
+		this._reset()
+		this.unsubscribe()
 	}
 
 	private _keyDownListener(event: KeyboardEvent): void {
