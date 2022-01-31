@@ -3,7 +3,7 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 
 import './App.css'
 import { KeyboardPage } from './pages/keyboard'
-import { Gamepad as GamepadPage } from './src/pages/gamepad'
+import { GamepadPage } from './pages/gamepad'
 
 const App: React.FC = () => {
 	return (
@@ -22,7 +22,7 @@ const App: React.FC = () => {
 					</nav>
 				</header>
 
-				<Routes> 
+				<Routes>
 					<Route path='/' element={<KeyboardPage/>} />
 					<Route path='gamepad' element={<GamepadPage />} />
 				</Routes>
