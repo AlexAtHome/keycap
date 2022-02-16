@@ -1,0 +1,10 @@
+.feed {
+	display: flex;
+	gap: 15px;
+	flex-direction: row;
+}
+
+.feed__item {
+	flex-shrink: 0;
+	display: inline-flex
+}

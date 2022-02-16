@@ -1,78 +1,84 @@
 import { convertStringToKeys, IKey, ISection } from "./keys.interface"
 
-export const funcRow: IKey[] = [
-	{
-		code: 'Escape',
-		label: 'Esc',
-		offsetRight: 1.05,
-	},
-	...Array(12).fill('').map((_, index) => ({
+const fKeycaps: [string, IKey][] = Array(12).fill('').map((_, index) => [`F${index+1}`, {
 		code: `F${index + 1}`,
 		label: `F${index + 1}`,
 		offsetRight: [3,7].includes(index) ? .5 : 0,
-	} as IKey))
-]
+	} as IKey])
 
-export const numbers: IKey[] = [
-	{
+export const keycapsMap = new Map<string, IKey>([
+	['Escape', {
+		code: 'Escape',
+		label: 'Esc',
+		offsetRight: 1.05,
+	}],
+	...fKeycaps,
+	['Backquote',{
 		code: 'Backquote',
 		label: "` ~",
-	},
-	{
+	}],
+	['Digit1',{
 		code: 'Digit1',
 		label: '1 !',
-	},
-	{
+	}],
+	['Digit2', {
 		code: 'Digit2',
 		label: '2 @',
-	},
-	{
+	}],
+	['Digit3',{
 		code: 'Digit3',
 		label: '3 #',
-	},
-	{
+	}],
+	['Digit4',{
 		code: 'Digit4',
 		label: '4 $',
-	},
-	{
+	}],
+	['Digit5',{
 		code: 'Digit5',
 		label: '5 %',
-	},
-	{
+	}],
+	['Digit6',{
 		code: 'Digit6',
 		label: '6 ^',
-	},
-	{
+	}],
+	['Digit7',{
 		code: 'Digit7',
 		label: '7 &',
-	},
-	{
+	}],
+	['Digit8',{
 		code: 'Digit8',
 		label: '8 *',
-	},
-	{
+	}],
+	['Digit9',{
 		code: 'Digit9',
 		label: '9 (',
-	},
-	{
+	}],
+	['Digit0',{
 		code: 'Digit0',
 		label: '0 )',
-	},
-	{
+	}],
+	['Minus',{
 		code: 'Minus',
 		label: '- _'
-	},
-	{
+	}],
+	['Equal',{
 		code: 'Equal',
 		label: '=+'
-	},
-	{
+	}],
+	['Backspace',{
 		code: 'Backspace',
 		label: `&larr; Back`,
 		isLabelHTML: true,
 		widthRatio: 2
-	}
+	}]
+])
+
+export const funcRow: IKey[] = [
+	keycapsMap.get('Escape') as IKey,
+	...[1,2,3,4,5,6,7,8,9,10,11,12].map<IKey>(key => keycapsMap.get(`F${key}`) as IKey)
 ]
+
+export const numbers: IKey[] = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'].map(code => keycapsMap.get(code) as IKey)
 
 export const topLetters: IKey[] = [
 	{
