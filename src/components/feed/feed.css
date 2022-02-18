@@ -4,9 +4,9 @@
 	gap: 15px;
 	flex-direction: row;
   flex-wrap: wrap;
+  margin: 30px auto 0;
 }
 
 .feed__item {
 	flex-shrink: 0;
-	display: inline-flex
 }
