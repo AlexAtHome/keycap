@@ -1,4 +1,4 @@
-import { convertStringToKeys, IKey, ISection } from "./keys.interface"
+import { IKey, ISection } from "./keys.interface"
 import { keycapsMap } from "./keys.map";
 
 const charsToKeycodes = (str: string): string[] => str.split('').map(char => `Key${char}`);

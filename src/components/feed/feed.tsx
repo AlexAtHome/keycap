@@ -1,31 +1,25 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { reverse, takeRight } from 'lodash-es'
 
 import { RootState } from '../../store'
 import { Key } from '../key/key'
-import { keycapsMap } from '../keyboard/keys.map'
 import './feed.css';
 
-export const KeyFeed = () => {
+export const KeyFeed: React.FC = () => {
   // TODO: There's gotta be another store for *all* key presses
-  const pressedKeys: string[] = useSelector((state: RootState) => {
-    const portion = takeRight(state.pressedKeys, 15)
-    return reverse(portion)
-  })
+  const keysHistory = useSelector((state: RootState) => state.keysHistory)
 
   return (
     <section className="feed">
-      {pressedKeys.map((key, index) => {
-        const keycap = keycapsMap.get(key)
+      {keysHistory.map((key, index) => {
         return (
           <Key
             className="feed__item"
-            id={key}
-            label={keycap?.label}
-            heightRatio={keycap?.heightRatio}
-            isLabelHTML={keycap?.isLabelHTML}
-            widthRatio={keycap?.widthRatio}
+            id={key.code}
+            label={key.label}
+            heightRatio={key.heightRatio}
+            isLabelHTML={key.isLabelHTML}
+            widthRatio={key.widthRatio}
             key={index}
           />
         )

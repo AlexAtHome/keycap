@@ -13,7 +13,7 @@ function App() {
         </div>
       </header>
 
-      <div className="container container_flex container_full-width">
+      <div className="container container_flex">
         <Keyboard />
         <KeyFeed />
       </div>

@@ -16,6 +16,8 @@
 	display: block;
 	position: relative;
 	margin: 40px auto 0;
+  max-width: 1500px;
+  width: 100%;
 }
 
 .container_flex {
@@ -24,6 +26,3 @@
 	justify-content: center;
 }
 
-.container:not(.container_full-width) {
-	max-width: 900px;
-}
