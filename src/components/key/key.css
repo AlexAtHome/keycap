@@ -1,34 +1,38 @@
-:root {
-	--key-offset-ratio: 0;
-	--key-width-ratio: 1;
-	--key-height-ratio: 1;
-	--key-width-span: 1;
-	--key-height-span: 1;
-}
+@tailwind components;
 
-.key {
-	width: calc(var(--key-width-ratio) * var(--key-size));
-	height: calc(var(--key-height-ratio) * var(--key-size));
-	border-radius: 4px;
-	background-color: var(--key-background-color, #fff);
-	border: 8px solid var(--key-border-color, #eee);
-	border-top: 3px solid var(--key-border-color, #eee);
-	margin-right: calc(var(--key-offset-ratio) * var(--key-size));
-	border-bottom-width: 8px;
-	color: var(--key-legend-color, #222);
-	padding-top: 2px;
-  display: inline-flex;
-  justify-content: center;
-}
+@layer components {
+	:root {
+		--key-offset-ratio: 0;
+		--key-width-ratio: 1;
+		--key-height-ratio: 1;
+		--key-width-span: 1;
+		--key-height-span: 1;
+	}
 
-.key_pressed {
-	--key-background-color: var(--key-background-color_pressed, tomato);
-	--key-border-color: var(--key-border-color_pressed, rgb(190, 101, 85));
-	--key-legend-color: var(--key-legend-color_pressed, #222);
-}
+	.key {
+		width: calc(var(--key-width-ratio) * var(--key-size));
+		height: calc(var(--key-height-ratio) * var(--key-size));
+		border-radius: 4px;
+		background-color: var(--key-background-color, #fff);
+		border: 8px solid var(--key-border-color, #eee);
+		border-top: 3px solid var(--key-border-color, #eee);
+		margin-right: calc(var(--key-offset-ratio) * var(--key-size));
+		border-bottom-width: 8px;
+		color: var(--key-legend-color, #222);
+		padding-top: 2px;
+		display: inline-flex;
+		justify-content: center;
+	}
 
-.key_active {
-	--key-background-color: var(--key-background-color_active, yellowgreen);
-	--key-border-color: var(--key-border-color_active, rgb(99, 133, 33));
-	--key-legend-color: var(--key-legend-color_active, #222);
+	.key_pressed {
+		--key-background-color: var(--key-background-color_pressed, tomato);
+		--key-border-color: var(--key-border-color_pressed, rgb(190, 101, 85));
+		--key-legend-color: var(--key-legend-color_pressed, #222);
+	}
+
+	.key_active {
+		--key-background-color: var(--key-background-color_active, yellowgreen);
+		--key-border-color: var(--key-border-color_active, rgb(99, 133, 33));
+		--key-legend-color: var(--key-legend-color_active, #222);
+	}
 }

@@ -3,7 +3,6 @@ import React from 'react'
 import parse from 'html-react-parser'
 import './key.css'
 
-
 interface IProps {
 	label?: string
 	id: string
