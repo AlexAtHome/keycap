@@ -10,18 +10,12 @@
 	}
 
 	.key {
+		@apply rounded-md inline-flex justify-end items-end p-2 text-right;
 		width: calc(var(--key-width-ratio) * var(--key-size));
 		height: calc(var(--key-height-ratio) * var(--key-size));
-		border-radius: 4px;
 		background-color: var(--key-background-color, #fff);
-		border: 8px solid var(--key-border-color, #eee);
-		border-top: 3px solid var(--key-border-color, #eee);
 		margin-right: calc(var(--key-offset-ratio) * var(--key-size));
-		border-bottom-width: 8px;
 		color: var(--key-legend-color, #222);
-		padding-top: 2px;
-		display: inline-flex;
-		justify-content: center;
 	}
 
 	.key_pressed {

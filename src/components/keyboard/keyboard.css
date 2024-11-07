@@ -2,8 +2,21 @@
 
 @layer components {
 	:root {
-		--key-gap: 2px;
-		--key-size: 60px;
+		--key-gap: 0.2vw;
+		--key-size: 4vw;
+	}
+
+	@media (min-width: 1440px) {
+		:root {
+			--key-gap: 2px;
+			--key-size: 60px;
+		}
+	}
+
+	@media (max-width: 1439px) {
+		.Keyboard {
+			@apply text-xs;
+		}
 	}
 
 	.Keyboard {

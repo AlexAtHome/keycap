@@ -15,11 +15,6 @@ function App() {
 				<Keyboard />
 				<KeyFeed />
 			</div>
-
-			<div className="max-w-7xl mx-auto">
-				<p>This app lets you check if all keys on your keyboard are in order.</p>
-				<p>Each pressed key is highlighted with red color.</p>
-			</div>
 		</main>
 	)
 }

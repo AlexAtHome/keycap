@@ -16,7 +16,7 @@
 }
 
 .reset-button:hover {
-	background-color: var(--reset-background-color_hover,#ddd);
+	background-color: var(--reset-background-color_hover, #ddd);
 }
 
 .reset-button:active {
