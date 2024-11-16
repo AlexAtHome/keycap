@@ -6,6 +6,7 @@ import { keycapsMap } from '../components/keyboard/keys.map'
 type State = IKey[]
 
 export const appendKeysHistory = createAction<string, 'history/append'>('history/append')
+export const resetKeysHistory = createAction<void, 'history/reset'>('history/reset')
 
 export const keysHistoryReducer = createReducer<State>([], builder => {
 	builder.addCase(appendKeysHistory, (state, { payload }) => {
@@ -15,4 +16,5 @@ export const keysHistoryReducer = createReducer<State>([], builder => {
 		}
 		return [key, ...take(state, 14)]
 	})
+	builder.addCase(resetKeysHistory, () => [])
 })

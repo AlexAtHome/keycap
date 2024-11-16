@@ -1,13 +1,16 @@
+import { isMacOS } from '../../functions/is-macos'
 import { IKey, convertStringToKeys } from './keys.interface'
 
-const fKeycaps: [string, IKey][] = Array(12)
+const isMac = isMacOS()
+
+const fKeycaps: [string, IKey][] = Array(19)
 	.fill('')
 	.map((_, index) => [
 		`F${index + 1}`,
 		{
 			code: `F${index + 1}`,
 			label: `F${index + 1}`,
-			offsetRight: [3, 7].includes(index) ? 0.5 : 0,
+			offsetRight: isMac ? 0 : [3, 7].includes(index) ? 0.5 : 0,
 		} as IKey,
 	])
 
@@ -16,8 +19,10 @@ export const keycapsMap = new Map<string, IKey>([
 		'Escape',
 		{
 			code: 'Escape',
-			label: 'Esc',
-			offsetRight: 1.05,
+			label: isMac ? 'esc' : 'Esc',
+			offsetRight: isMac ? 0 : 1.05,
+			widthRatio: isMac ? 2 : 1,
+			align: isMac ? 'left' : 'right'
 		},
 	],
 	...fKeycaps,
@@ -25,109 +30,131 @@ export const keycapsMap = new Map<string, IKey>([
 		'Backquote',
 		{
 			code: 'Backquote',
-			label: '` ~',
+			shiftLabel: '~',
+			label: '`',
 		},
+	],
+	[
+		'Fingerprint',
+		{
+			code: 'fingerprint',
+			label: ``
+		}
 	],
 	[
 		'Digit1',
 		{
 			code: 'Digit1',
-			label: '1 !',
+			shiftLabel: '!',
+			label: '1',
 		},
 	],
 	[
 		'Digit2',
 		{
 			code: 'Digit2',
-			label: '2 @',
+			shiftLabel: '@',
+			label: '2',
 		},
 	],
 	[
 		'Digit3',
 		{
 			code: 'Digit3',
-			label: '3 #',
+			shiftLabel: '#',
+			label: '3',
 		},
 	],
 	[
 		'Digit4',
 		{
 			code: 'Digit4',
-			label: '4 $',
+			shiftLabel: '$',
+			label: '4',
 		},
 	],
 	[
 		'Digit5',
 		{
 			code: 'Digit5',
-			label: '5 %',
+			shiftLabel: '%',
+			label: '5',
 		},
 	],
 	[
 		'Digit6',
 		{
 			code: 'Digit6',
-			label: '6 ^',
+			shiftLabel: '^',
+			label: '6',
 		},
 	],
 	[
 		'Digit7',
 		{
 			code: 'Digit7',
-			label: '7 &',
+			shiftLabel: '&',
+			label: '7',
 		},
 	],
 	[
 		'Digit8',
 		{
 			code: 'Digit8',
-			label: '8 *',
+			shiftLabel: '*',
+			label: '8',
 		},
 	],
 	[
 		'Digit9',
 		{
 			code: 'Digit9',
-			label: '9 (',
+			shiftLabel: '(',
+			label: '9',
 		},
 	],
 	[
 		'Digit0',
 		{
 			code: 'Digit0',
-			label: '0 )',
+			shiftLabel: ')',
+			label: '0',
 		},
 	],
 	[
 		'Minus',
 		{
 			code: 'Minus',
-			label: '- _',
+			shiftLabel: '_',
+			label: '-',
 		},
 	],
 	[
 		'Equal',
 		{
 			code: 'Equal',
-			label: '=+',
+			shiftLabel: '+',
+			label: '=',
 		},
 	],
 	[
 		'Backspace',
 		{
 			code: 'Backspace',
-			label: `&larr; Back`,
+			label: isMac ? '⌫' : `&larr; Back`,
 			isLabelHTML: true,
 			widthRatio: 2,
+			align: 'right'
 		},
 	],
 	[
 		'Tab',
 		{
 			code: 'Tab',
-			label: 'Tab&#8646;',
+			label: isMac ? '⇥' : 'Tab&#8646;',
 			isLabelHTML: true,
 			widthRatio: 1.43,
+			align: 'left'
 		},
 	],
 	[
@@ -159,8 +186,9 @@ export const keycapsMap = new Map<string, IKey>([
 		'CapsLock',
 		{
 			code: 'CapsLock',
-			label: 'Caps Lock',
+			label: isMac ? '⇪' : 'Caps Lock',
 			widthRatio: 1.65,
+			align: 'left'
 		},
 	],
 	[
@@ -183,7 +211,7 @@ export const keycapsMap = new Map<string, IKey>([
 		'Enter',
 		{
 			code: 'Enter',
-			label: 'Enter &#8626;',
+			label: isMac ? '↩︎' : 'Enter &#8626;',
 			isLabelHTML: true,
 			widthRatio: 2.38,
 		},
@@ -192,9 +220,10 @@ export const keycapsMap = new Map<string, IKey>([
 		'ShiftLeft',
 		{
 			code: 'ShiftLeft',
-			label: '&#8657; Shift',
+			label: isMac ? '⇧' : '&#8657; Shift',
 			isLabelHTML: true,
 			widthRatio: 2.13,
+			align: 'left'
 		},
 	],
 	[
@@ -225,33 +254,50 @@ export const keycapsMap = new Map<string, IKey>([
 		'ShiftRight',
 		{
 			code: 'ShiftRight',
-			label: '&#8657; Shift',
+			label: isMac ? '⇧' : '&#8657; Shift',
 			isLabelHTML: true,
 			widthRatio: 2.92,
+			align: 'right'
 		},
 	],
 	[
 		'ControlLeft',
 		{
 			code: 'ControlLeft',
-			label: 'Ctrl',
-			widthRatio: 1.2,
+			upperLabel: isMac ? '⌃' : '',
+			label: isMac ? 'control' : 'Ctrl',
+			widthRatio: isMac ? 1.5 : 1.2,
+			align: isMac ? 'left' : 'right',
 		},
 	],
 	[
 		'Win',
 		{
 			code: 'MetaLeft',
-			label: 'Win',
-			widthRatio: 1.2,
+			upperLabel: isMac ? '⌘' : '',
+			label: isMac ? 'command' : 'Win',
+			widthRatio: isMac ? 1.4 : 1.2,
+			align: isMac ? 'left' : 'right',
 		},
+	],
+	[
+		'WinRight',
+		{
+			code: 'MetaRight',
+			upperLabel: isMac ? '⌘' : '',
+			label: isMac ? 'command' : 'Win',
+			widthRatio: isMac ? 1.4 : 1.2,
+			align: isMac ? 'right' : 'left',
+		}
 	],
 	[
 		'AltLeft',
 		{
 			code: 'AltLeft',
-			label: 'Alt',
-			widthRatio: 1.2,
+			upperLabel: isMac ? '⌥' : '',
+			label: isMac ? 'option' : 'Alt',
+			widthRatio: isMac ? 1.3 : 1.2,
+			align: isMac ? 'left' : 'right',
 		},
 	],
 	[
@@ -266,16 +312,18 @@ export const keycapsMap = new Map<string, IKey>([
 		'AltRight',
 		{
 			code: 'AltRight',
-			label: 'Alt',
-			widthRatio: 1.2,
+			upperLabel: isMac ? '⌥' : '',
+			label: isMac ? 'option' : 'Alt',
+			widthRatio: isMac ? 1.3 : 1.2,
+			align: 'right'
 		},
 	],
 	[
 		'Fn',
 		{
 			code: 'Fn',
-			label: 'Fn',
-			widthRatio: 1.2,
+			label: isMac ? 'fn' : 'Fn',
+			widthRatio: isMac ? 1 : 1.2,
 		},
 	],
 	[
@@ -290,8 +338,10 @@ export const keycapsMap = new Map<string, IKey>([
 		'ControlRight',
 		{
 			code: 'ControlRight',
-			label: 'Ctrl',
-			widthRatio: 1.2,
+			upperLabel: isMac ? '⌃' : '',
+			label: isMac ? 'control' : 'Ctrl',
+			widthRatio: isMac ? 1.5 : 1.2,
+			align: 'right'
 		},
 	],
 	[
@@ -340,7 +390,7 @@ export const keycapsMap = new Map<string, IKey>([
 		'Delete',
 		{
 			code: 'Delete',
-			label: 'Delete',
+			label: isMac ? '⌦' : 'Delete',
 		},
 	],
 	[
@@ -432,7 +482,7 @@ export const keycapsMap = new Map<string, IKey>([
 		{
 			code: 'NumpadAdd',
 			label: '+',
-			heightRatio: 2.03,
+			heightRatio: isMac ? 1 : 2.03,
 		},
 	],
 	[
@@ -442,6 +492,20 @@ export const keycapsMap = new Map<string, IKey>([
 			label: '&#8626;',
 			isLabelHTML: true,
 			heightRatio: 2.03,
+		},
+	],
+	[
+		'NumpadClear',
+		{
+			code: 'NumpadClear',
+			label: 'clear',
+		},
+	],
+	[
+		'NumpadEqual',
+		{
+			code: 'NumpadEqual',
+			label: '=',
 		},
 	],
 	[

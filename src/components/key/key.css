@@ -10,7 +10,7 @@
 	}
 
 	.key {
-		@apply rounded-md inline-flex justify-end items-end p-2 text-right;
+		@apply rounded-md inline-flex flex-col justify-end p-2 text-right;
 		width: calc(var(--key-width-ratio) * var(--key-size));
 		height: calc(var(--key-height-ratio) * var(--key-size));
 		background-color: var(--key-background-color, #fff);

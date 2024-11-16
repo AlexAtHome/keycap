@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { addPressedKey, resetPressedKeys } from '../../reducers'
+import { type FC, useEffect, useState } from 'react'
+import { addPressedKey } from '../../reducers'
 import { store } from '../../store'
 
 import { KeyRow } from './key-row'
 import './keyboard.css'
 import { ansiKeyboard } from './keys.metadata'
-import { ResetButton } from '../reset-button/reset-button'
 import { addActiveKey, removeActiveKey } from '../../reducers/active-keys'
 import { appendKeysHistory } from '../../reducers/keys-history'
+import type { ISection } from './keys.interface'
 
 export const Keyboard = () => {
 	const [isShiftPressed, setIsShiftPressed] = useState(false);
@@ -31,16 +31,18 @@ export const Keyboard = () => {
 	}, [])
 
 	return <div className='Keyboard'>
-		<ResetButton onClick={() => store.dispatch(resetPressedKeys())} />
 		<div className='wrap'>
-			{ansiKeyboard.map((section, i) => (
-				<section className='keyset' key={i} id={section.id} style={{ marginBottom: section.marginBottom }}>
-					{section.rows.map((row, j) => (
-						<KeyRow row={row} key={j} isShiftPressed={isShiftPressed} />
-					))}
-				</section>
-			))}
+			{ansiKeyboard.map((section, i) => <Keyset section={section} isShiftPressed={isShiftPressed} key={i} />)}
 		</div>
 	</div>
 }
 
+type KeysetProps = { section: ISection, isShiftPressed: boolean };
+
+const Keyset: FC<KeysetProps> = ({ section, isShiftPressed }: KeysetProps) => (
+	<section className='keyset' id={section.id} style={{ marginBottom: section.marginBottom }}>
+		{section.rows.map((row, j) => (
+			<KeyRow row={row} key={j} isShiftPressed={isShiftPressed} />
+		))}
+	</section>
+)

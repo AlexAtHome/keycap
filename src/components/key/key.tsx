@@ -1,15 +1,14 @@
 import clsx from 'clsx'
 import React from 'react'
 import parse from 'html-react-parser'
-import './key.css'
+import type { IKey } from '../keyboard/keys.interface'
 
-interface IProps {
-	label?: string
+import './key.css'
+import { Fingerprint } from 'react-bootstrap-icons'
+
+interface IProps extends IKey {
 	id: string
 	mod?: string
-	offsetRight?: number | null
-	widthRatio?: number | null
-	heightRatio?: number | null
 	isPressed?: boolean
 	isActive?: boolean
 	isLabelHTML?: boolean
@@ -25,6 +24,8 @@ export const Key: React.FC<IProps> = ({
 	isPressed = false,
 	isLabelHTML = false,
 	isActive = false,
+	align = 'right',
+	upperLabel = '',
 	className,
 }) => {
 	const styles = {
@@ -36,9 +37,17 @@ export const Key: React.FC<IProps> = ({
 		<div
 			id={`key_${id}`}
 			style={styles}
-			className={clsx(`key`, { key_pressed: isPressed, key_active: isActive }, className)}
+			className={clsx(`key`, {
+				key_pressed: isPressed,
+				key_active: isActive,
+				'items-start': align === 'left',
+				'items-center': align === 'center',
+				'items-end': align === 'right',
+			}, className)}
 		>
-			{isLabelHTML ? parse(label) : label}
+			{id === 'fingerprint' && <Fingerprint width="80%" height="80%" className="self-center justify-self-center m-auto text-gray-600" />}
+			{upperLabel && <span className="inline-flex">{upperLabel}</span>}
+			{label && <span className="inline-flex">{isLabelHTML ? parse(label) : label}</span>}
 		</div>
 	)
 }

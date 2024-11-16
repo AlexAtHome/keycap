@@ -1,11 +1,13 @@
 export interface IKey {
 	code: string
+	upperLabel?: string
 	label: string
 	isLabelHTML?: boolean
 	shiftLabel?: string
 	widthRatio?: number
 	heightRatio?: number
 	offsetRight?: number
+	align?: 'left' | 'center' | 'right'
 }
 
 export interface IRowDTO {
@@ -19,7 +21,7 @@ export interface IRowDTO {
 export type Row = IKey[] | IRowDTO
 
 export interface ISection {
-	id: 'functional' | 'letters' | 'control1' | 'control2' | 'numpad'
+	id: 'functional' | 'letters' | 'control1' | 'control2' | 'control3' | 'numpad'
 	marginBottom?: number
 	rows: Row[]
 }

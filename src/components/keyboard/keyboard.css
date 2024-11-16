@@ -20,13 +20,9 @@
 	}
 
 	.Keyboard {
-		display: block;
-		position: relative;
-		text-align: center;
+		@apply block relative text-center p-5 text-sm;
 		background-color: var(--keyboard-background-color, #a2a2a2);
-		padding: 20px;
 		border-radius: 20px;
-
 		width: min-content;
 		user-select: none;
 	}
@@ -59,13 +55,19 @@
 		grid-row: 2 / 3;
 	}
 
+	#control3 {
+		grid-column: 3 / 4;
+		grid-row: 1 / 2;
+	}
+
 	#numpad {
 		grid-column: 3 / 4;
 		grid-row: 2 / 3;
 	}
 
 	#control1,
-	#control2 {
+	#control2,
+	#control3 {
 		font-size: 0.75em;
 	}
 
@@ -85,7 +87,7 @@
 		justify-content: center;
 	}
 
-	.row + .row {
+	.row+.row {
 		margin-top: var(--key-gap);
 	}
 }
