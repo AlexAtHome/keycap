@@ -9,11 +9,11 @@ export const KeyFeed: React.FC = () => {
 	const keysHistory = useSelector((state: RootState) => state.keysHistory)
 
 	return (
-		<section className="flex gap-4 flex-row flex-wrap mt-8 mx-auto mb-0">
+		<section className='flex gap-4 flex-row flex-wrap mt-8 mx-auto mb-0'>
 			{keysHistory.map((key, index) => {
 				return (
 					<Key
-						className="flex-shrink"
+						className='flex-shrink'
 						id={key.code}
 						label={key.label}
 						heightRatio={key.heightRatio}
