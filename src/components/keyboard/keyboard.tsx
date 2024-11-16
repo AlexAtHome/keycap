@@ -11,16 +11,26 @@ import type { ISection } from './keys.interface'
 
 export const Keyboard = () => {
 	const [isShiftPressed, setIsShiftPressed] = useState(false);
+
 	const keyUpListener = (event: KeyboardEvent) => {
-		!isShiftPressed && setIsShiftPressed(event.key === 'Shift')
+		event.preventDefault()
+		if (isShiftPressed && event.key === 'Shift') {
+			setIsShiftPressed(false)
+		}
 		store.dispatch(removeActiveKey(event.code))
 		store.dispatch(appendKeysHistory(event.code))
 	}
+
 	const keyDownListener = (event: KeyboardEvent) => {
-		isShiftPressed && setIsShiftPressed(event.key === 'Shift')
+		event.preventDefault()
+		console.log('keydown', event.key)
+		if (!isShiftPressed && event.key === 'Shift') {
+			setIsShiftPressed(true)
+		}
 		store.dispatch(addPressedKey(event.code))
 		store.dispatch(addActiveKey(event.code))
 	}
+
 	useEffect(() => {
 		window.addEventListener('keyup', keyUpListener)
 		window.addEventListener('keydown', keyDownListener)
@@ -28,7 +38,7 @@ export const Keyboard = () => {
 			window.removeEventListener('keyup', keyUpListener)
 			window.removeEventListener('keydown', keyDownListener)
 		}
-	}, [])
+	}, [isShiftPressed])
 
 	return <div className='Keyboard'>
 		<div className='wrap'>
