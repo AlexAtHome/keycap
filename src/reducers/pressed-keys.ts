@@ -9,10 +9,9 @@ export const pressedKeysReducer = createReducer<State>([], builder => {
 	builder
 		.addCase(addPressedKey, (state, { payload }) => {
 			if (!state.includes(payload)) {
-				state.push(payload)
+				return [...state, payload]
 			}
+			return state
 		})
-		.addCase(resetPressedKeys, () => {
-			return []
-		})
+		.addCase(resetPressedKeys, () => [])
 })
