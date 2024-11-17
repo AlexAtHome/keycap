@@ -3,16 +3,33 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 
 import './index.css'
-import App from './App'
+import Root from './Root'
 import reportWebVitals from './reportWebVitals'
 import { store } from './store'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ErrorPage from './components/error-page'
+import KeyboardPage from './routes/keyboard'
+
+const router = createBrowserRouter([
+	{
+		path: '/',
+		element: <Root />,
+		errorElement: <ErrorPage />,
+		children: [
+			{
+				path: '/',
+				element: <KeyboardPage />,
+			}
+		]
+	}
+])
 
 const container = document.getElementById('root')!
 const root = createRoot(container)
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<App />
+			<RouterProvider router={router} />
 		</Provider>
 	</React.StrictMode>
 )
