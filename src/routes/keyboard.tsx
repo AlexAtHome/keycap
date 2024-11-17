@@ -1,6 +1,10 @@
 import { KeyFeed } from "../components/feed/feed"
 import { Keyboard } from "../components/keyboard/keyboard"
-import { ResetButton } from "../components/reset-button/reset-button"
+import { type RootState, store } from "../store"
+import { resetKeysHistory, resetPressedKeys } from "../reducers"
+import { useSelector } from "react-redux"
+import { Button } from "../components/button/button"
+import { ArrowClockwise } from "react-bootstrap-icons"
 
 const KeyboardPage = () => {
 	return (
@@ -16,7 +20,7 @@ const KeyboardPage = () => {
 			<div className='flex flex-col relative'>
 				<header className="flex flex-row gap-8 justify-start">
 					<h2 className="font-bold text-3xl">Key history</h2>
-					<ResetButton />
+					<KbdResetButton />
 				</header>
 				<KeyFeed />
 			</div>
@@ -25,3 +29,16 @@ const KeyboardPage = () => {
 }
 
 export default KeyboardPage
+
+const KbdResetButton = () => {
+	const hasPressedKeys = useSelector((state: RootState) => state.pressedKeys.length > 0)
+	const reset = () => {
+		store.dispatch(resetPressedKeys())
+		store.dispatch(resetKeysHistory())
+	}
+
+	return <Button disabled={!hasPressedKeys} onClick={reset}>
+		Reset
+		<ArrowClockwise size="1.5em" role="presentation" />
+	</Button>
+}

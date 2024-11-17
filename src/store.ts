@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { pressedKeysReducer, activeKeysReducer } from './reducers'
+import { pressedKeysReducer, activeKeysReducer, controllerReducer } from './reducers'
 import { keysHistoryReducer } from './reducers/keys-history'
 
 export const store = configureStore({
@@ -7,6 +7,7 @@ export const store = configureStore({
 		pressedKeys: pressedKeysReducer,
 		activeKeys: activeKeysReducer,
 		keysHistory: keysHistoryReducer,
+		controller: controllerReducer,
 	},
 	devTools: process.env.NODE_ENV !== 'production',
 })

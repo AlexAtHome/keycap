@@ -1,13 +1,25 @@
-import { Outlet } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 
 function Root() {
 	return (
 		<main className='flex flex-col gap-12 py-8 min-h-screen'>
-			<header className='flex flex-col relative w-full lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto px-4'>
-				<h1 className='text-4xl mb-2 font-bold'>Keycap</h1>
-				<div>
+			<header className='flex flex-row gap-8 relative w-full lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto px-4'>
+				<div role="presentation">
+					<h1 className='text-4xl mb-2 font-bold'>Keycap</h1>
 					<small>The Keyboard Testing Tool</small>
 				</div>
+				<nav className="flex flex-col justify-center items-stretch pb-6">
+					<ul className="flex justify-start items-start gap-8">
+						<li className="inline-flex">
+							<Link to="/">Keyboard</Link>
+						</li>
+						<li className="inline-flex">
+							<Link to="/gamepad" className="inline-flex flex-col gap-1">
+								<span>Gamepad</span>
+							</Link>
+						</li>
+					</ul>
+				</nav>
 			</header>
 
 			<div className="flex flex-col relative w-full lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto px-4">
@@ -23,7 +35,7 @@ function Root() {
 					</a>
 				</div>
 			</footer>
-		</main>
+		</main >
 	)
 }
 

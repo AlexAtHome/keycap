@@ -9,6 +9,7 @@ import { store } from './store'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './components/error-page'
 import KeyboardPage from './routes/keyboard'
+import DevicePage from './routes/device'
 
 const router = createBrowserRouter([
 	{
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
 			{
 				path: '/',
 				element: <KeyboardPage />,
+			},
+			{
+				path: '/gamepad',
+				element: <DevicePage />,
 			}
 		]
 	}
