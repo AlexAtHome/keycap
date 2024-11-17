@@ -7,6 +7,8 @@
 
 # testing
 /coverage
+dev-dist
+dist
 
 # production
 /build
