@@ -14,11 +14,8 @@ export const KeyFeed: React.FC = () => {
 				return (
 					<Key
 						className='flex-shrink'
+						{...key}
 						id={key.code}
-						label={key.label}
-						heightRatio={key.heightRatio}
-						isLabelHTML={key.isLabelHTML}
-						widthRatio={key.widthRatio}
 						key={index}
 					/>
 				)

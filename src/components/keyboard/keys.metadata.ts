@@ -35,8 +35,8 @@ export const ansiKeyboard: ISection[] = [
 			codesToKeycaps('CapsLock', ...charsToKeycodes('ASDFGHJKL'), 'Semicolon', 'Quote', 'Enter'),
 			codesToKeycaps('ShiftLeft', ...charsToKeycodes('ZXCVBNM'), 'Comma', 'Period', 'Slash', 'ShiftRight'),
 			isMac
-				? codesToKeycaps('ControlLeft', 'AltLeft', 'Win', 'Space', 'WinRight', 'AltRight', 'ControlRight')
-				: codesToKeycaps('ControlLeft', 'Win', 'AltLeft', 'Space', 'AltRight', 'Fn', 'ContextMenu', 'ControlRight'),
+				? codesToKeycaps('ControlLeft', 'AltLeft', 'MetaLeft', 'Space', 'MetaRight', 'AltRight', 'ControlRight')
+				: codesToKeycaps('ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'Fn', 'ContextMenu', 'ControlRight'),
 		],
 	},
 	{

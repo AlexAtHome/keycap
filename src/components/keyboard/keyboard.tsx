@@ -23,7 +23,6 @@ export const Keyboard = () => {
 
 	const keyDownListener = (event: KeyboardEvent) => {
 		event.preventDefault()
-		console.log('keydown', event.key)
 		if (!isShiftPressed && event.key === 'Shift') {
 			setIsShiftPressed(true)
 		}

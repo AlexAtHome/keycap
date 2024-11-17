@@ -271,7 +271,7 @@ export const keycapsMap = new Map<string, IKey>([
 		},
 	],
 	[
-		'Win',
+		'MetaLeft',
 		{
 			code: 'MetaLeft',
 			upperLabel: isMac ? '⌘' : '',
@@ -281,7 +281,7 @@ export const keycapsMap = new Map<string, IKey>([
 		},
 	],
 	[
-		'WinRight',
+		'MetaRight',
 		{
 			code: 'MetaRight',
 			upperLabel: isMac ? '⌘' : '',
