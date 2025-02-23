@@ -1,41 +1,31 @@
-import type { FC } from "react";
-import clsx from "clsx";
-import useGamepad, { GamepadController } from "../functions/use-gamepad";
-import { useParams } from "react-router-dom";
-import { RootState, store } from "../store";
-import { useSelector } from "react-redux";
-import { resetPressedKeys, resetTouchedControllerKeys } from "../reducers";
-import { Button } from "../components/button/button";
-import { ArrowClockwise } from "react-bootstrap-icons";
-import { ProgressBar } from "../components/progress-bar/progress-bar";
+import clsx from "clsx"
+import useGamepad, { GamepadController } from "../functions/use-gamepad"
+import { RootState } from "../store"
+import { useSelector } from "react-redux"
+import { Button } from "../components/button/button"
+import { ArrowClockwise, Controller, ExclamationTriangle } from "react-bootstrap-icons"
+import { ProgressBar } from "../components/progress-bar/progress-bar"
 
-const DevicePage = () => {
-	const params = useParams()
-	const index = params.index ? +params.index : 0;
-	return <section>
-		{<GenericGamepadLayout index={index} />}
-	</section>
-}
-
-interface GamepadLayoutParams {
-	index: number;
-}
-
-const GenericGamepadLayout: FC<GamepadLayoutParams> = () => {
+const GenericGamepadLayout = () => {
 	useGamepad()
-	const gamepad = useSelector((state: RootState) => state.controller);
-	if (!gamepad.isConnected) {
-		return <div>
+	const gamepad = useSelector((state: RootState) => state.controller)
+	if (gamepad.id === 'none') {
+		return <section>
 			<h2 className="font-bold text-4xl mb-2">Controller not found</h2>
 			<p>Make sure it's connected to your device and press any button.</p>
-		</div>
+		</section>
 	}
 
-	return <div className="flex flex-col gap-4">
+	return <section className="flex flex-col gap-4">
 		<h2 className="font-bold text-4xl mb-2">{gamepad.name}</h2>
+		{!gamepad.isConnected && <div className="rounded-lg p-2 bg-yellow-600 text-black">
+			<h3 className="font-bold text-2xl mb-2 inline-flex gap-2 items-baseline"><ExclamationTriangle aria-hidden={true} /> Looks like the gamepad has been disconnected!</h3>
+			<p>Make sure it is properly connected to the computer via cable or Bluetooth, then try to press any button.</p>
+		</div>}
 
 		<div className="flex gap-2">
 			<GamepadResetButton />
+			{gamepad.hasVibration && <VibrateButton />}
 		</div>
 
 		<ul className="flex gap-2 flex-wrap">
@@ -62,19 +52,54 @@ const GenericGamepadLayout: FC<GamepadLayoutParams> = () => {
 			</li>)}
 		</ul>
 
-	</div >
+	</section>
 }
 
-export default DevicePage
+export default GenericGamepadLayout
 
 const GamepadResetButton = () => {
+	const isConnected = useSelector((state: RootState) => state.controller.isConnected)
 	const hasTouchedKeys = useSelector((state: RootState) => state.controller.touchedButtons.some(Boolean))
 	const reset = () => {
 		GamepadController.resetTouched()
 	}
 
-	return <Button disabled={!hasTouchedKeys} onClick={reset}>
+	return <Button disabled={!hasTouchedKeys || !isConnected} onClick={reset}>
 		Reset
 		<ArrowClockwise size="1.5em" role="presentation" />
+	</Button>
+}
+
+const VibrateButton = () => {
+	const test = async () => {
+		const actuator = GamepadController.controller?.vibrationActuator
+		if (!actuator) {
+			return
+		}
+		await actuator.playEffect("dual-rumble", {
+			duration: 700,
+			strongMagnitude: 1,
+			weakMagnitude: 0.1,
+		})
+		await actuator.playEffect("trigger-rumble", {
+			duration: 500,
+			startDelay: 300,
+			leftTrigger: 1,
+			rightTrigger: 0,
+			strongMagnitude: 1,
+			weakMagnitude: 0.1,
+		})
+		await actuator.playEffect("trigger-rumble", {
+			duration: 500,
+			startDelay: 300,
+			leftTrigger: 0,
+			rightTrigger: 1,
+			strongMagnitude: 1,
+			weakMagnitude: 0.1,
+		})
+	}
+	return <Button onClick={test} className="text-red-300">
+		Test vibration
+		<Controller size="1.5em" role="presentation" />
 	</Button>
 }

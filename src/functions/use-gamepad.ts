@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { connectController, disconnectController, pressControllerKey, resetTouchedControllerKeys } from "../reducers"
 import { store } from "../store"
 
@@ -18,7 +18,7 @@ export class GamepadController {
 	private static animationFrame = -1
 
 	static connect(event: GamepadEvent): void {
-		if (this.isConnected) {
+		if (GamepadController.isConnected) {
 			return
 		}
 		this.id = event.gamepad.id
@@ -29,12 +29,13 @@ export class GamepadController {
 			pressedButtons: event.gamepad.buttons.map((button) => button.pressed),
 			touchedButtons: event.gamepad.buttons.map((button) => button.touched),
 			axes: event.gamepad.axes.map(Number),
+			hasVibration: !!event.gamepad.vibrationActuator
 		}))
 		this.startLoop()
 	}
 
 	static disconnect(_event: GamepadEvent): void {
-		this.isConnected = false
+		GamepadController.isConnected = false
 		delete this.id
 		store.dispatch(disconnectController())
 		cancelAnimationFrame(this.animationFrame)
@@ -102,20 +103,33 @@ export class GamepadController {
 	}
 }
 
-export default function useGamepad(): void {
+export default function useGamepad(): boolean {
+	const [isListening, setIsListening] = useState(false)
 	function connect(event: GamepadEvent) {
-		GamepadController.connect(event)
+		if (!isListening) {
+			GamepadController.connect(event)
+			setIsListening(true)
+		}
+	}
+	function disconnect(event: GamepadEvent) {
+		if (isListening) {
+			GamepadController.disconnect(event)
+			setIsListening(false)
+		}
 	}
 	useEffect(() => {
 		if (GamepadController.id) {
 			GamepadController.startLoop()
+			setIsListening(true)
 		}
 		addEventListener('gamepadconnected', connect)
-		addEventListener('gamepaddisconnected', GamepadController.disconnect)
+		addEventListener('gamepaddisconnected', disconnect)
 		return () => {
 			removeEventListener('gamepadconnected', connect)
-			removeEventListener('gamepaddisconnected', GamepadController.disconnect)
+			removeEventListener('gamepaddisconnected', disconnect)
 			GamepadController.stopLoop()
 		}
-	}, [])
+	}, [isListening])
+
+	return isListening
 }

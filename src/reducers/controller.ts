@@ -4,6 +4,7 @@ type GamepadState = {
 	id: string
 	name: string;
 	isConnected: boolean
+	hasVibration: boolean;
 	buttons: number[]
 	pressedButtons: boolean[];
 	touchedButtons: boolean[];
@@ -14,13 +15,14 @@ const defaultState: GamepadState = {
 	id: 'none',
 	name: 'none',
 	isConnected: false,
+	hasVibration: false,
 	buttons: [],
 	pressedButtons: [],
 	touchedButtons: [],
 	axes: [],
 }
 
-type GamepadConnectParams = Pick<GamepadState, 'id' | 'buttons' | 'pressedButtons' | 'touchedButtons' | 'axes'>
+type GamepadConnectParams = Omit<GamepadState, 'name' | 'isConnected'>
 
 export const connectController = createAction<GamepadConnectParams, 'controller/connect'>('controller/connect')
 export const disconnectController = createAction<void, 'controller/disconnect'>('controller/disconnect')

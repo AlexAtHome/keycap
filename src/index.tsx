@@ -22,7 +22,7 @@ const router = createBrowserRouter([
 				element: <KeyboardPage />,
 			},
 			{
-				path: '/gamepad',
+				path: '/game-controller',
 				element: <DevicePage />,
 			}
 		]

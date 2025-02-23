@@ -14,8 +14,8 @@ function Root() {
 							<Link to="/">Keyboard</Link>
 						</li>
 						<li className="inline-flex">
-							<Link to="/gamepad" className="inline-flex flex-col gap-1">
-								<span>Gamepad</span>
+							<Link to="/game-controller" className="inline-flex flex-col gap-1">
+								<span>Game controller</span>
 							</Link>
 						</li>
 					</ul>
