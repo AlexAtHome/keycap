@@ -7,6 +7,7 @@ type GamepadState = {
 	buttons: number[]
 	pressedButtons: boolean[];
 	touchedButtons: boolean[];
+	axes: number[];
 }
 
 const defaultState: GamepadState = {
@@ -15,14 +16,15 @@ const defaultState: GamepadState = {
 	isConnected: false,
 	buttons: [],
 	pressedButtons: [],
-	touchedButtons: []
+	touchedButtons: [],
+	axes: [],
 }
 
-type GamepadConnectParams = Pick<GamepadState, 'id' | 'buttons' | 'pressedButtons' | 'touchedButtons'>
+type GamepadConnectParams = Pick<GamepadState, 'id' | 'buttons' | 'pressedButtons' | 'touchedButtons' | 'axes'>
 
 export const connectController = createAction<GamepadConnectParams, 'controller/connect'>('controller/connect')
 export const disconnectController = createAction<void, 'controller/disconnect'>('controller/disconnect')
-export const pressControllerKey = createAction<{ buttons?: number[], pressed?: boolean[], touched?: boolean[] }, 'controller/pressKey'>('controller/pressKey')
+export const pressControllerKey = createAction<{ buttons?: number[], pressed?: boolean[], touched?: boolean[], axes?: number[] }, 'controller/pressKey'>('controller/pressKey')
 export const resetTouchedControllerKeys = createAction<void, 'controller/resetTouched'>('controller/resetTouched')
 
 export const controllerReducer = createReducer<GamepadState>({ ...defaultState }, builder => {
@@ -48,6 +50,12 @@ export const controllerReducer = createReducer<GamepadState>({ ...defaultState }
 			}
 		})
 		.addCase(pressControllerKey, (state, { payload }) => {
+			if (payload.axes) {
+				state = {
+					...state,
+					axes: [...payload.axes]
+				}
+			}
 			if (payload.buttons) {
 				state = {
 					...state,

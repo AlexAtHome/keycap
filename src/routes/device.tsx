@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { resetPressedKeys, resetTouchedControllerKeys } from "../reducers";
 import { Button } from "../components/button/button";
 import { ArrowClockwise } from "react-bootstrap-icons";
+import { ProgressBar } from "../components/progress-bar/progress-bar";
 
 const DevicePage = () => {
 	const params = useParams()
@@ -37,25 +38,30 @@ const GenericGamepadLayout: FC<GamepadLayoutParams> = () => {
 			<GamepadResetButton />
 		</div>
 
-		<ul className="flex gap-4 flex-wrap">
-			{gamepad.buttons.map((button, i) => <li className="inline-flex" key={i}>
+		<ul className="flex gap-2 flex-wrap">
+			{gamepad.buttons.map((value, i) => <li className="inline-flex" key={i}>
 				<div className={clsx("rounded-lg p-2 inline-flex flex-col gap-1 items-start", {
 					'bg-green-400': gamepad.pressedButtons[i],
-					'bg-blue-300': gamepad.touchedButtons[i],
+					'bg-blue-500': gamepad.touchedButtons[i],
 					'text-black': gamepad.pressedButtons[i] || gamepad.touchedButtons[i]
 				})}>
-					<small>Button {i}</small>
-					<span>{button}</span>
+					<span id={`button-${i}`}>Button {i}</span>
+					<ProgressBar max={1} value={value} ariaLabelledby={`button-${i}`} />
+					<small className="text-xs" role="presentation">{value * 10 % 10 !== 0 ? value.toFixed(6) : 0}</small>
 				</div>
 			</li>)}
 		</ul>
 
-		{/*<ul>
-			{gamepad.axes.map((axis, i) => <li key={i}>
-				<span>Axis {i}</span>
-				<progress value={axis} max={1}></progress>
+		<ul className="flex gap-4 flex-wrap">
+			{gamepad.axes.map((axis, i) => <li className="inline-flex" key={i}>
+				<div className={clsx("rounded-lg p-2 inline-flex flex-col gap-1 items-start")}>
+					<span id={`axis-${i}`}>Axis {i}</span>
+					<ProgressBar min={-1} max={1} value={axis} ariaLabelledby={`axis-${i}`} />
+					<small className="text-xs" role="presentation">{axis}</small>
+				</div>
 			</li>)}
-		</ul> */}
+		</ul>
+
 	</div >
 }
 
