@@ -2,18 +2,25 @@ import { useEffect, useState } from "react"
 import { connectController, disconnectController, pressControllerKey, resetTouchedControllerKeys } from "../reducers"
 import { store } from "../store"
 
+export enum GamepadHID {
+	XboxOneController = '045e-028e',
+	XboxSeriesController = '045e-0b12'
+}
+
 export class GamepadController {
 	static id?: string
+	static hid?: string;
 	static get controller(): Gamepad | null {
 		return navigator.getGamepads().find(gamepad => gamepad?.id === this.id) ?? null
 	}
 	static isConnected = false
+	static isXbox: boolean
 	static axesStatus: string[]
 
 	static values: number[]
 	static pressed: boolean[]
 	static touched: boolean[]
-	static axes: number[];
+	static axes: number[]
 
 	private static animationFrame = -1
 
@@ -22,6 +29,8 @@ export class GamepadController {
 			return
 		}
 		this.id = event.gamepad.id
+		this.hid = this.getHID()
+		this.isXbox = [GamepadHID.XboxSeriesController, GamepadHID.XboxOneController].includes(this.hid as GamepadHID)
 		this.isConnected = true
 		store.dispatch(connectController({
 			id: event.gamepad.id,
@@ -34,9 +43,24 @@ export class GamepadController {
 		this.startLoop()
 	}
 
+	private static getHID(): GamepadHID {
+		const id = this.id!
+		const hidPattern = /^\w{4}-\w{4}/
+		if (hidPattern.test(id)) {
+			return id.slice(0, 9) as GamepadHID
+		}
+		const vendorMatch = id.match(/Vendor: \w{4}/)
+		const productMatch = id.match(/Product: \w{4}/)
+		if (vendorMatch !== null && productMatch !== null) {
+			return `${vendorMatch[0].slice(7)}-${productMatch[0].slice(9)}`.trim() as GamepadHID
+		}
+		return ''
+	}
+
 	static disconnect(_event: GamepadEvent): void {
 		GamepadController.isConnected = false
 		delete this.id
+		delete this.hid
 		store.dispatch(disconnectController())
 		cancelAnimationFrame(this.animationFrame)
 	}
