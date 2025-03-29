@@ -1,40 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-:root {
-	--midnight-blue: #0c6980;
-	--cyan: #00a8a8;
-	--turquoise: #2eb5e0;
-	--serenity: #c4dbe0;
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
 
-	--background-color: var(--midnight-blue);
-	--text-color: var(--serenity);
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
-@media screen and (prefers-color-scheme: dark) {
-	:root {
-		--key-background-color: #333;
-		--key-border-color: #222;
-		--key-legend-color: #ddd;
-		--keyboard-background-color: #151515;
+@utility details {
+  @apply block;
 
-		--key-background-color_pressed: rgb(161, 69, 53);
-		--key-border-color_pressed: rgb(97, 49, 40);
-		--key-legend-color_pressed: var(--text-color);
-		--key-background-color_active: rgb(103, 133, 45);
-		--key-border-color_active: rgb(71, 97, 19);
-		--key-legend-color_active: var(--text-color);
+  & dt {
+    @apply float-left mr-2 font-bold;
+  }
+}
 
-		--reset-background-color: #333;
-		--reset-background-color_hover: #353535;
-		--reset-background-color_active: #424242;
-		--reset-border-color: #222;
-		--reset-color: #ddd;
+@layer utilities {
+  :root {
+    --midnight-blue: #0c6980;
+    --cyan: #00a8a8;
+    --turquoise: #2eb5e0;
+    --serenity: #c4dbe0;
 
-		--background-color: #252525;
-		--text-color: #bbb;
-	}
+    --background-color: var(--midnight-blue);
+    --text-color: var(--serenity);
+  }
+
+  @media screen and (prefers-color-scheme: dark) {
+    :root {
+      --key-background-color: #333;
+      --key-border-color: #222;
+      --key-legend-color: #ddd;
+      --keyboard-background-color: #151515;
+
+      --key-background-color_pressed: rgb(161, 69, 53);
+      --key-border-color_pressed: rgb(97, 49, 40);
+      --key-legend-color_pressed: var(--text-color);
+      --key-background-color_active: rgb(103, 133, 45);
+      --key-border-color_active: rgb(71, 97, 19);
+      --key-legend-color_active: var(--text-color);
+
+      --reset-background-color: #333;
+      --reset-background-color_hover: #353535;
+      --reset-background-color_active: #424242;
+      --reset-border-color: #222;
+      --reset-color: #ddd;
+
+      --background-color: #252525;
+      --text-color: #bbb;
+    }
+  }
 }
 
 @layer base {
@@ -52,15 +78,5 @@
 
 		background-color: var(--background-color);
 		color: var(--text-color);
-	}
-}
-
-@layer components {
-	.details {
-		@apply block;
-	}
-
-	.details dt {
-		@apply float-left mr-2 font-bold;
 	}
 }

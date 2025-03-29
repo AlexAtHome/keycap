@@ -13,7 +13,7 @@ export const KeyFeed: React.FC = () => {
 			{keysHistory.map((key, index) => {
 				return (
 					<Key
-						className='flex-shrink'
+						className='shrink'
 						{...key}
 						id={key.code}
 						key={index}

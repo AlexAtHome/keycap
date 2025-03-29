@@ -14,7 +14,7 @@ const ErrorPage = () => {
 	const error = useRouteError();
 	console.log(error)
 
-	return <section className="min-h-screen flex flex-col justify-center gap-4 xl:max-w-screen-xl m-auto p-4">
+	return <section className="min-h-screen flex flex-col justify-center gap-4 xl:max-w-(--breakpoint-xl) m-auto p-4">
 		{(error as RoutingError).status === 404 ? <NotFoundErrorPage /> : <OtherErrorPage error={error as Error} />}
 	</section>
 }

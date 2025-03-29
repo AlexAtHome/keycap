@@ -1,32 +1,30 @@
-@tailwind components;
+:root {
+	--key-offset-ratio: 0;
+	--key-width-ratio: 1;
+	--key-height-ratio: 1;
+	--key-width-span: 1;
+	--key-height-span: 1;
+}
 
-@layer components {
-	:root {
-		--key-offset-ratio: 0;
-		--key-width-ratio: 1;
-		--key-height-ratio: 1;
-		--key-width-span: 1;
-		--key-height-span: 1;
-	}
+.key {
+	@apply inline-flex flex-col justify-end text-right;
+	border-radius: .5rem;
+	padding: .5rem;
+	width: calc(var(--key-width-ratio) * var(--key-size));
+	height: calc(var(--key-height-ratio) * var(--key-size));
+	background-color: var(--key-background-color, #fff);
+	margin-right: calc(var(--key-offset-ratio) * var(--key-size));
+	color: var(--key-legend-color, #222);
+}
 
-	.key {
-		@apply rounded-md inline-flex flex-col justify-end p-2 text-right;
-		width: calc(var(--key-width-ratio) * var(--key-size));
-		height: calc(var(--key-height-ratio) * var(--key-size));
-		background-color: var(--key-background-color, #fff);
-		margin-right: calc(var(--key-offset-ratio) * var(--key-size));
-		color: var(--key-legend-color, #222);
-	}
+.key_pressed {
+	--key-background-color: var(--key-background-color_pressed, tomato);
+	--key-border-color: var(--key-border-color_pressed, rgb(190, 101, 85));
+	--key-legend-color: var(--key-legend-color_pressed, #222);
+}
 
-	.key_pressed {
-		--key-background-color: var(--key-background-color_pressed, tomato);
-		--key-border-color: var(--key-border-color_pressed, rgb(190, 101, 85));
-		--key-legend-color: var(--key-legend-color_pressed, #222);
-	}
-
-	.key_active {
-		--key-background-color: var(--key-background-color_active, yellowgreen);
-		--key-border-color: var(--key-border-color_active, rgb(99, 133, 33));
-		--key-legend-color: var(--key-legend-color_active, #222);
-	}
+.key_active {
+	--key-background-color: var(--key-background-color_active, yellowgreen);
+	--key-border-color: var(--key-border-color_active, rgb(99, 133, 33));
+	--key-legend-color: var(--key-legend-color_active, #222);
 }
