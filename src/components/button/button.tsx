@@ -1,11 +1,11 @@
 import clsx from "clsx";
-import { FC } from "react"
+import { FC, PropsWithChildren } from "react"
 
-type ButtonProps = {
-	onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+type ButtonProps = PropsWithChildren<{
+	onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined
 	disabled?: boolean
-	className?: string;
-}
+	className?: string
+}>
 
 export const Button: FC<ButtonProps> = ({ onClick, disabled, className, children }) => {
 	return (
