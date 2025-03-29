@@ -4,6 +4,7 @@ type GamepadState = {
 	id: string
 	name: string;
 	isConnected: boolean
+	isVibrating: boolean
 	hasVibration: boolean;
 	buttons: number[]
 	pressedButtons: boolean[];
@@ -15,6 +16,7 @@ const defaultState: GamepadState = {
 	id: 'none',
 	name: 'none',
 	isConnected: false,
+	isVibrating: false,
 	hasVibration: false,
 	buttons: [],
 	pressedButtons: [],
@@ -24,6 +26,8 @@ const defaultState: GamepadState = {
 
 type GamepadConnectParams = Omit<GamepadState, 'name' | 'isConnected'>
 
+export const vibrateController = createAction<void, 'controller/vibrate'>('controller/vibrate')
+export const unvibrateController = createAction<void, 'controller/unvibrate'>('controller/unvibrate')
 export const connectController = createAction<GamepadConnectParams, 'controller/connect'>('controller/connect')
 export const disconnectController = createAction<void, 'controller/disconnect'>('controller/disconnect')
 export const pressControllerKey = createAction<{ buttons?: number[], pressed?: boolean[], touched?: boolean[], axes?: number[] }, 'controller/pressKey'>('controller/pressKey')
@@ -81,5 +85,13 @@ export const controllerReducer = createReducer<GamepadState>({ ...defaultState }
 		.addCase(resetTouchedControllerKeys, (state) => ({
 			...state,
 			touchedButtons: state.touchedButtons.map(_ => false),
+		}))
+		.addCase(vibrateController, state => ({
+			...state,
+			isVibrating: true
+		}))
+		.addCase(unvibrateController, state => ({
+			...state,
+			isVibrating: false
 		}))
 })

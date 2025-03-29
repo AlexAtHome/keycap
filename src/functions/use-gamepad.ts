@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { connectController, disconnectController, pressControllerKey, resetTouchedControllerKeys } from "../reducers"
+import { connectController, disconnectController, pressControllerKey, resetTouchedControllerKeys, unvibrateController, vibrateController } from "../reducers"
 import { store } from "../store"
 
 export enum GamepadHID {
@@ -34,6 +34,7 @@ export class GamepadController {
 		this.isConnected = true
 		store.dispatch(connectController({
 			id: event.gamepad.id,
+			isVibrating: false,
 			buttons: event.gamepad.buttons.map((button) => button.value),
 			pressedButtons: event.gamepad.buttons.map((button) => button.pressed),
 			touchedButtons: event.gamepad.buttons.map((button) => button.touched),
@@ -41,6 +42,29 @@ export class GamepadController {
 			hasVibration: !!event.gamepad.vibrationActuator
 		}))
 		this.startLoop()
+	}
+
+	static async vibrate() {
+		const actuator = GamepadController.controller?.vibrationActuator
+		if (!actuator) {
+			return
+		}
+
+		store.dispatch(vibrateController())
+		await actuator.playEffect("dual-rumble", {
+			duration: 700,
+			strongMagnitude: 1,
+			weakMagnitude: 0.1,
+		})
+		await actuator.playEffect("trigger-rumble", {
+			duration: 500,
+			startDelay: 0,
+			leftTrigger: 1,
+			rightTrigger: 1,
+			strongMagnitude: 1,
+			weakMagnitude: 0.1,
+		})
+		store.dispatch(unvibrateController())
 	}
 
 	private static getHID(): GamepadHID {

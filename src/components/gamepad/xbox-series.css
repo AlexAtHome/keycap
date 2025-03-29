@@ -1,0 +1,41 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+	@keyframes shake {
+		0% {
+			transform: translateX(-5px)
+		}
+
+		50% {
+			transform: translateX(5px)
+		}
+
+		100% {
+			transform: translateX(0)
+		}
+	}
+}
+
+@layer components {
+	.shaking {
+		animation: linear .1s infinite alternate shake;
+	}
+
+	.controller {
+		@apply w-full m-auto;
+		max-width: 38rem;
+	}
+
+	.xbox-silouette {
+		stroke: rgb(0 0 0);
+		fill: rgb(209, 219, 234);
+		stroke-width: 16.0614px;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		.xbox-silouette {
+			fill: oklch(0.175 0.025 259);
+		}
+	}
+}
