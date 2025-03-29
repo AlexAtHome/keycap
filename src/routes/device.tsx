@@ -41,6 +41,8 @@ const GamepadPageLayout = () => {
 				<dd>{GamepadController.hid}</dd>
 				<dt>Vibration</dt>
 				<dd>{gamepad.hasVibration ? 'Available' : 'No'}</dd>
+				<dt>Uptime</dt>
+				<dd>{GamepadController.controller?.timestamp} ms</dd>
 			</dl>
 		}
 

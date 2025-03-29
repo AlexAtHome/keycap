@@ -9,10 +9,8 @@ export enum GamepadHID {
 
 export class GamepadController {
 	static id?: string
-	static hid?: string;
-	static get controller(): Gamepad | null {
-		return navigator.getGamepads().find(gamepad => gamepad?.id === this.id) ?? null
-	}
+	static hid?: string
+	static controller: Gamepad | null
 	static isConnected = false
 	static isXbox: boolean
 	static axesStatus: string[]
@@ -109,7 +107,7 @@ export class GamepadController {
 
 	/** Executed on every frame inside the game loop, to update the actual status of the gamepad object regularly */
 	private static update(): void {
-		const c = this.controller ?? {} as Gamepad
+		const c = this.controller = navigator.getGamepads().find(gamepad => gamepad?.id === this.id) ?? null ?? {} as Gamepad
 
 		let hasValueChanges = false
 		let hasPressedChanges = false
