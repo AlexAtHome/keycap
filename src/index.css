@@ -54,3 +54,13 @@
 		color: var(--text-color);
 	}
 }
+
+@layer components {
+	.details {
+		@apply block;
+	}
+
+	.details dt {
+		@apply float-left mr-2 font-bold;
+	}
+}
