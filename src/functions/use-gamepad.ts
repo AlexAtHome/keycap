@@ -76,7 +76,7 @@ export class GamepadController {
 		if (vendorMatch !== null && productMatch !== null) {
 			return `${vendorMatch[0].slice(7)}-${productMatch[0].slice(9)}`.trim() as GamepadHID
 		}
-		return ''
+		return '' as GamepadHID
 	}
 
 	static disconnect(_event: GamepadEvent): void {

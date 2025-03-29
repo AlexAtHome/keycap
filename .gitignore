@@ -9,6 +9,7 @@
 /coverage
 dev-dist
 dist
+*tsbuildinfo
 
 # production
 /build
