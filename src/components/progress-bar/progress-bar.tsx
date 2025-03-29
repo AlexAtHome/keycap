@@ -6,16 +6,18 @@ type ProgressBarProps = {
 	max?: number;
 	value: number;
 	isVertical?: boolean;
-	isReverse?: boolean;
+	isReversed?: boolean;
 	ariaLabel?: string;
 	ariaLabelledby?: string;
 }
 
-export const ProgressBar: FC<ProgressBarProps> = ({ value, min = 0, max = 100, ariaLabel, ariaLabelledby, isVertical, isReverse }) => {
+export const ProgressBar: FC<ProgressBarProps> = ({ value, min = 0, max = 100, ariaLabel, ariaLabelledby, isVertical, isReversed }) => {
 	const amplitude = Math.abs(min) + Math.abs(max)
 	const centerMarkPlacement = min < 0 ? Math.abs(min / amplitude) * 100 : 0
 	const start = value >= 0 ? centerMarkPlacement : (Math.abs(min) - Math.abs(value)) / amplitude * 100
 	const end = value <= 0 ? 100 - centerMarkPlacement : (Math.abs(max) - Math.abs(value)) / amplitude * 100
+	const verticalStyle = isReversed ? { bottom: `${end}%`, top: `${start}%` } : { bottom: `${start}%`, top: `${end}%` };
+	const horizontalStyle = isReversed ? { left: `${start}%`, right: `${end}%` } : { left: `${start}%`, right: `${end}%` };
 	return <div
 		role="progressbar"
 		aria-valuenow={value}
@@ -34,7 +36,7 @@ export const ProgressBar: FC<ProgressBarProps> = ({ value, min = 0, max = 100, a
 				'top-0 bottom-0': !isVertical,
 				'left-0 right-0': isVertical
 			})}
-			style={isVertical ? { bottom: `${start}%`, top: `${end}%` } : { left: `${start}%`, right: `${end}%` }}
+			style={isVertical ? verticalStyle : horizontalStyle}
 		></span>
 	</div>
 }
