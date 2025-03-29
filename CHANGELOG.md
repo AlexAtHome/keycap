@@ -1,3 +1,8 @@
+## 0.6.0
+
+- Migration to React 19
+- Migration to Tailwind.css 4
+
 ## 0.5.0
 
 - Gamepads support
