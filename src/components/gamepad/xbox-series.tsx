@@ -3,12 +3,14 @@ import { useSelector } from "react-redux"
 import clsx from "clsx"
 import type { RootState } from "../../store"
 
+const isChrome = 'chrome' in window
+
 enum XboxButton {
 	A,
 	B,
-	Y,
-	X,
-	LB,
+	Y = isChrome ? 3 : 2,
+	X = isChrome ? 2 : 3,
+	LB = 4,
 	RB,
 	LT,
 	RT,
