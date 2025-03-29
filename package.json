@@ -1,7 +1,7 @@
 {
 	"name": "keycap",
-	"version": "0.4.0",
-	"homepage": "https://alexathome.github.io/keycap",
+	"version": "0.5.0",
+	"homepage": "https://keycap.alexalex.dev",
 	"private": true,
 	"type": "module",
 	"dependencies": {
