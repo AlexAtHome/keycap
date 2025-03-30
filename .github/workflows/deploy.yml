@@ -2,9 +2,9 @@ name: Deploy the app to Github Pages
 
 on:
   push:
-    branches:
-      - main
-
+    tags:
+      - 0.*.*
+      - 1.*.*
 
 permissions:
   pages: write
