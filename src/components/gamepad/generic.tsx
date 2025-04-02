@@ -7,6 +7,10 @@ export const GenericGamepadLayout = () => {
 	return <div className="flex flex-col gap-4">
 		<GenericButtonLayout />
 		<GenericAxisLayout />
+		<div>
+			<h3 className="font-bold text-2xl mb-2">Button press history</h3>
+			<GenericButtonHistory />
+		</div>
 	</div>
 }
 
@@ -37,5 +41,12 @@ export const GenericAxisLayout = () => {
 				<small className="text-xs" role="presentation">{axis}</small>
 			</div>
 		</li>)}
+	</ul>
+}
+
+export const GenericButtonHistory = () => {
+	const history = useSelector((state: RootState) => state.controllerHistory)
+	return <ul className="flex gap-4 flex-wrap">
+		{history.map((button, i) => <li key={i} className="border rounded-sm px-4 py-1">Button {button}</li>)}
 	</ul>
 }

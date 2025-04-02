@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { connectController, disconnectController, pressControllerKey, resetTouchedControllerKeys, unvibrateController, vibrateController } from "../reducers"
 import { store } from "../store"
+import { appendControllerHistory } from "../reducers/controller-history"
 
 export enum GamepadHID {
 	XboxOneController = '045e-028e',
@@ -139,6 +140,7 @@ export class GamepadController {
 		}
 
 		if (hasValueChanges || hasPressedChanges || hasTouchedChanges || hasAxesChanges) {
+			this.logChanges()
 			store.dispatch(pressControllerKey({
 				buttons: hasValueChanges ? this.values : undefined,
 				pressed: hasPressedChanges ? this.pressed : undefined,
@@ -146,6 +148,20 @@ export class GamepadController {
 				axes: hasAxesChanges ? this.axes : undefined,
 			}))
 		}
+	}
+
+	private static logChanges(): void {
+		const indexes: number[] = []
+		const previousState = store.getState().controller.pressedButtons
+		for (let i = 0; i < this.pressed.length; i++) {
+			if (this.pressed[i] && this.pressed[i] !== previousState[i]) {
+				indexes.push(i)
+			}
+		}
+		if (indexes.length === 0) {
+			return
+		}
+		store.dispatch(appendControllerHistory(indexes[0]))
 	}
 }
 
