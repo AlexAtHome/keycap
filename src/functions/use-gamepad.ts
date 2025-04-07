@@ -8,6 +8,8 @@ export enum GamepadHID {
 	XboxSeriesController = '045e-0b12'
 }
 
+const xboxHIDs = ['045e-028e', '045e-0b12', '045e-0b00', '045e-02ea']
+
 export class GamepadController {
 	static id?: string
 	static hid?: string
@@ -29,7 +31,7 @@ export class GamepadController {
 		}
 		this.id = event.gamepad.id
 		this.hid = this.getHID()
-		this.isXbox = [GamepadHID.XboxSeriesController, GamepadHID.XboxOneController].includes(this.hid as GamepadHID)
+		this.isXbox = xboxHIDs.includes(this.hid as GamepadHID)
 		this.isConnected = true
 		store.dispatch(connectController({
 			id: event.gamepad.id,
