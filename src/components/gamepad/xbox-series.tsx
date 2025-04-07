@@ -52,7 +52,7 @@ export const XboxGamepadLayout = () => {
 					<li>The Share button on Xbox Series controllers is not recognized in Chromium based browsers, but recognized in Firefox.</li>
 					<li>Back buttons on Xbox Elite Controllers are not recognoized in Chromium based browsers, but recognized in Firefox.</li>
 					<li>To be able to test out the back buttons on a Xbox Elite Controller, switch off the profile.</li>
-					<li>The Xbox button is not recognized by any browser, but pressing on it increases the timestamp value.</li>
+					<li>The Xbox button may not be recognized by some browsers.</li>
 					<li>Vibration is not supported by Firefox.</li>
 				</ol>
 			</div>
@@ -89,6 +89,7 @@ const GraphicalXboxController = () => {
 			b: getClasses(XboxButton.B),
 			menu: getClasses(XboxButton.Menu),
 			view: getClasses(XboxButton.View),
+			xbox: getClasses(XboxButton.Xbox),
 			share: getClasses(XboxButton.Share),
 			dpadleft: getClasses(XboxButton.DPadLeft),
 			dpadright: getClasses(XboxButton.DPadRight),
@@ -168,9 +169,9 @@ const GraphicalXboxController = () => {
 				<rect id="share-btn" className={clsx(classes.share)} style={{ stroke: 'rgb(0, 0, 0)', fill: getFill('oklch(0.316 0.003 107)', XboxButton.Share), strokeWidth: '16.0614px' }} x="78.456" y="-581.41" width="332.744" height="187.141" rx="90" ry="90" />
 				<path d="M 158.589 -509.84 L 171.763 -509.84 L 171.763 -454.901 L 317.161 -454.901 L 317.161 -509.84 L 329.854 -509.84 L 329.854 -441.88 L 158.589 -441.88 L 158.589 -509.84 Z M 243.705 -546.151 L 217.195 -518.795 L 226.784 -510.758 L 237.36 -521.757 L 237.783 -478.607 L 250.615 -478.748 L 250.192 -521.898 L 261.896 -511.181 L 271.484 -519.782 L 243.705 -546.151 Z" style={{ fill: 'rgb(216, 216, 216)' }} />
 			</g>}
-			<g id="xbox-decor">
+			<g id="xbox">
 				<title>Xbox Button</title>
-				<ellipse style={{ stroke: 'rgb(0, 0, 0)', fill: 'oklch(0.979 0 none)' }} cx="243.45" cy="-1445.6" rx="234.077" ry="231.649" />
+				<ellipse className={clsx(classes.xbox)} style={{ stroke: 'rgb(0, 0, 0)', fill: getFill('oklch(0.979 0 none)', XboxButton.Xbox) }} cx="243.45" cy="-1445.6" rx="234.077" ry="231.649" />
 				<path style={{ stroke: 'rgb(0, 0, 0)', fill: 'oklch(0.129 0 107)' }} d="M 400.308 -1619 L 356.122 -1596.5 L 311.236 -1555.9 L 348.407 -1506.1 L 382.774 -1454.9 L 408.023 -1406.5 L 424.154 -1360.2 C 424.154 -1360.2 433.271 -1309.7 433.271 -1309 C 433.271 -1308.6 428.646 -1301.7 423.081 -1295.7 C 417.426 -1289.6 411.634 -1283 411.634 -1283 L 394.538 -1337.8 L 347.241 -1402.6 L 285.518 -1467.4 L 243.821 -1500.359 L 202.898 -1467.2 L 141.175 -1402.4 L 93.878 -1337.6 L 76.782 -1282.9 C 76.782 -1282.9 70.99 -1289.5 65.335 -1295.6 C 59.77 -1301.6 55.145 -1308.5 55.145 -1308.9 C 55.145 -1309.6 64.262 -1360.1 64.262 -1360.1 L 80.393 -1406.3 L 105.642 -1454.7 L 140.009 -1505.9 L 177.18 -1555.7 L 132.294 -1596.4 L 88.108 -1618.9 L 109.123 -1635.7 L 126.072 -1645.8 C 126.072 -1645.8 156.498 -1643.7 156.635 -1643.7 C 156.772 -1643.7 201.181 -1629.9 201.181 -1629.7 C 201.181 -1629.6 240.39 -1610.149 244.14 -1608.449 C 244.14 -1608.449 287.235 -1629.7 287.235 -1629.9 C 287.235 -1630 331.644 -1643.9 331.781 -1643.9 C 331.918 -1643.9 362.344 -1645.9 362.344 -1645.9 L 379.293 -1635.9 L 400.308 -1619 Z" />
 			</g>
 			<g transform="matrix(1, 0, 0, 0.93868, -2.760599, 15.238671)">
