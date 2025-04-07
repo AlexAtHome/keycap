@@ -9,6 +9,7 @@ export const GamepadResetButton = () => {
 	const hasTouchedKeys = useSelector((state: RootState) => state.controller.touchedButtons.some(Boolean))
 	const reset = () => {
 		GamepadController.resetTouched()
+		GamepadController.resetHistory()
 	}
 
 	return <Button disabled={!hasTouchedKeys || !isConnected} onClick={reset}>

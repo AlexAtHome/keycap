@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { connectController, disconnectController, pressControllerKey, resetTouchedControllerKeys, unvibrateController, vibrateController } from "../reducers"
 import { store } from "../store"
-import { appendControllerHistory } from "../reducers/controller-history"
+import { appendControllerHistory, resetControllerHistory } from "../reducers/controller-history"
 
 export enum GamepadHID {
 	XboxOneController = '045e-028e',
@@ -106,6 +106,10 @@ export class GamepadController {
 	static resetTouched(): void {
 		this.touched = this.touched.map(_ => false)
 		store.dispatch(resetTouchedControllerKeys())
+	}
+
+	static resetHistory(): void {
+		store.dispatch(resetControllerHistory())
 	}
 
 	/** Executed on every frame inside the game loop, to update the actual status of the gamepad object regularly */
