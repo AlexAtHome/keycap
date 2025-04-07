@@ -1,3 +1,15 @@
+## 0.7.0
+
+- Pressed gamepad buttons history (only in Advanced mode for now)
+- The "Reset" button now also resets the history
+- Changes the color of sticks in the Xbox controller layout
+
+### Fixes
+
+- Decreases the size of the disconnected device warning
+- Xbox button press detection
+- Wired Xbox controller detection
+
 ## 0.6.0
 
 - Migration to React 19
