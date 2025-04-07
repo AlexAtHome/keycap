@@ -105,18 +105,10 @@ const GraphicalXboxController = () => {
 	return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 385.082 278.1" className={clsx("controller", { 'shaking': gamepad.isVibrating })}>
 		<defs>
 			<pattern x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse" viewBox="0 0 100 100" id="pattern-0">
-				<rect x="0" y="0" width="50" height="100" style={{ fill: 'oklch(0.146 0 0)' }} />
-				<rect x="50" width="50" height="100" style={{ fill: 'oklch(0.217 0 0)' }} />
+				<rect x="0" y="0" width="50" height="100" style={{ fill: 'oklch(0.14 0 0)' }} />
+				<rect x="50" width="50" height="100" style={{ fill: 'oklch(0.27 0 0)' }} />
 			</pattern>
 			<pattern id="pattern-0-0" href="#pattern-0" patternTransform="matrix(0.475386, 0.87978, -0.879777, 0.475385, 1068.37223, 97.72333)" />
-			<linearGradient gradientUnits="userSpaceOnUse" x1="1063.32" y1="-181.447" x2="1063.32" y2="410.773" id="gradient-0" spreadMethod="pad" gradientTransform="matrix(0.999954, -0.009639, 0.00964, 1, -3.910415, 10.249838)">
-				<stop offset="0" style={{ stopColor: 'oklch(0 0 0)' }} />
-				<stop offset="1" style={{ stopColor: 'oklch(0.226 0 0)' }} />
-			</linearGradient>
-			<linearGradient gradientUnits="userSpaceOnUse" x1="1063.32" y1="-181.447" x2="1063.32" y2="410.773" id="gradient-1" spreadMethod="pad" gradientTransform="matrix(0.999954, -0.009639, 0.00964, 1, -2088.435434, -1062.104529)">
-				<stop offset="0" style={{ stopColor: 'oklch(0 0 0)' }} />
-				<stop offset="1" style={{ stopColor: 'oklch(0.226 0 0)' }} />
-			</linearGradient>
 			<pattern id="pattern-1" href="#pattern-0" patternTransform="matrix(0.475386, 0.87978, -0.879777, 0.475385, -1016.154434, -974.631029)" />
 		</defs>
 		<g transform="matrix(0.062261, 0, 0, 0.062261, 176.821, 129.98)">
@@ -186,12 +178,12 @@ const GraphicalXboxController = () => {
 			<g>
 				<title>Right Stick</title>
 				<ellipse id="rsb" className={clsx(classes.rsb)} style={{ transformBox: 'fill-box', transformOrigin: '50% 50%', strokeWidth: '48.1843px', fill: getFill('oklch(0.342 0 107)', XboxButton.RSB), stroke: 'oklch(0.239 0 107)' }} cx="1063.32" cy="114.665" rx="420.819" ry="420.819" />
-				<ellipse id="rs" className="will-change-transform" style={{ transform: stick(XboxAxis.RS_X, XboxAxis.RS_Y), transformOrigin: '1063.32px 114.663px', strokeWidth: '112.43px', stroke: 'url("#pattern-0-0")', strokeLinecap: 'square', fill: 'url("#gradient-0")', fillRule: 'nonzero' }} cx="1063.32" cy="114.663" rx="296.11" ry="296.11" />
+				<ellipse id="rs" className="will-change-transform" style={{ transform: stick(XboxAxis.RS_X, XboxAxis.RS_Y), transformOrigin: '1063.32px 114.663px', strokeWidth: '112.43px', stroke: 'url("#pattern-0-0")', strokeLinecap: 'square', fill: 'oklch(0 0 0)', fillRule: 'nonzero' }} cx="1063.32" cy="114.663" rx="296.11" ry="296.11" />
 			</g>
 			<g transform="matrix(1, 0, 0, 1, -328.741, 131.973)">
 				<title>Left Stick</title>
 				<ellipse id="lsb" className={clsx(classes.lsb)} style={{ strokeWidth: '48.1843px', fill: getFill('oklch(0.342 0 107)', XboxButton.LSB), stroke: 'oklch(0.239 0 107)', transformBox: 'fill-box', transformOrigin: '50% 50%' }} cx="-1017.7" cy="-955.46" rx="420.819" ry="420.819" />
-				<ellipse id="ls" className="will-change-transform" style={{ transform: stick(XboxAxis.LS_X, XboxAxis.LS_Y), strokeWidth: '112.43px', strokeLinecap: 'square', fillRule: 'nonzero', fill: 'url("#gradient-1")', stroke: 'url("#pattern-1")', transformOrigin: '-1021.2px -957.691px' }} cx="-1021.2" cy="-957.7" rx="296.11" ry="296.11" />
+				<ellipse id="ls" className="will-change-transform" style={{ transform: stick(XboxAxis.LS_X, XboxAxis.LS_Y), strokeWidth: '112.43px', strokeLinecap: 'square', fillRule: 'nonzero', fill: 'oklch(0 0 0)', stroke: 'url("#pattern-1")', transformOrigin: '-1021.2px -957.691px' }} cx="-1021.2" cy="-957.7" rx="296.11" ry="296.11" />
 			</g>
 			{isXboxElite && [
 				<path id="p1" key={0} className={clsx(classes.p1)} style={{ stroke: 'rgb(0, 0, 0)', fill: getFill('oklch(0.521 0 none)', XboxButton.P1), strokeWidth: '16.0614px' }} d="M 988.636 1089.68 L 1370.98 1098.72 L 1504.48 1134.92 L 1565.56 1130.39 L 1608.54 1162.07 L 1640.21 1241.25 L 1649.27 1336.29 C 1649.27 1336.29 1633.44 1404.16 1631.17 1404.16 C 1628.91 1404.16 1594.97 1447.14 1594.97 1447.14 C 1594.97 1447.14 1563.3 1453.92 1561.03 1453.92 C 1558.77 1453.92 1425.28 1370.22 1425.28 1370.22 L 1350.63 1343.06 L 1278.22 1334.02 L 988.636 1334.02 C 988.636 1334.02 945.64 1324.96 936.597 1284.25 L 938.75 1154.28 C 938.75 1154.28 933.401 1099.4 988.636 1089.68 Z">
